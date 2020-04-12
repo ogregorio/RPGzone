@@ -14,7 +14,7 @@ public class App {
 	private static ArrayList<Room> rooms = new ArrayList<Room>();
 	private static User userLogged;
 	
-	public static void showOutput(String output) {
+	public static void showOutput(String output) {//method to show the output
 		JTextArea textArea = new JTextArea(40, 70);
 	    textArea.setText(output + "\n");
 	    textArea.setEditable(false);
@@ -45,20 +45,20 @@ public class App {
 			
 			switch(op) {
 				case 1:
-					users.add(Register.newUser());
+					users.add(Register.newUser());//add new user in db of app
 					break;
 				case 2:
-					Object userReturn = Login.toDoLogin(users, Reader.readString("email"), Reader.readString("password"));
+					Object userReturn = Login.toDoLogin(users, Reader.readString("email"), Reader.readString("password"));//verifying credentials
 					if(userReturn != null) {
 						JOptionPane.showMessageDialog(null, "Logged on success", "Success", JOptionPane.INFORMATION_MESSAGE);
-						userLogged = (User) userReturn;
+						userLogged = (User) userReturn;//setting this user on user logged
 					}
 					else
 						JOptionPane.showMessageDialog(null, "user does not registered", "Error", JOptionPane.ERROR_MESSAGE);
 					break;
 				case 3:
 					if(userLogged != null) {
-						rooms.add(userLogged.createRoom());
+						rooms.add(userLogged.createRoom());//add new room in db of app
 					}
 					else 
 						JOptionPane.showMessageDialog(null, "You have to log in first", "Error", JOptionPane.ERROR_MESSAGE);
@@ -66,9 +66,9 @@ public class App {
 				case 4:
 					if(userLogged != null) {
 						if(rooms.size() > 0) {
-							Room room = rooms.get(Reader.readIndex(rooms.size()));
-							Object stateResponse = room.returnUserStateInRoom(userLogged);
-							if(stateResponse != null)
+							Room room = rooms.get(Reader.readIndex(rooms.size()));//get of user which room he  want add user
+							Object stateResponse = room.returnUserStateInRoom(userLogged);//verify which user it is logged right now and return his state in room
+							if(stateResponse != null)//to know if user is present this room
 								( (User) stateResponse ).addUser(room, users.get(Reader.readIndex(users.size() ) ) );
 						}
 					}
@@ -78,21 +78,21 @@ public class App {
 				case 5:
 					output = "";
 					for(Iterator<Room> iterator = rooms.iterator(); iterator.hasNext();) {
-						output += iterator.next() + "\n\n";
+						output += iterator.next() + "\n\n";//showing all rooms
 					}
 					showOutput(output);
 					break;
 				case 6:
 					output = "";
 					for(Iterator<User> iterator = users.iterator(); iterator.hasNext();) {
-						output += iterator.next() + "\n\n";
+						output += iterator.next() + "\n\n";//showing all users
 					}
 					showOutput(output);
 					break;
 				case 7:
 					if(userLogged != null) {
 						output = userLogged + "\nEnd\n";
-						showOutput(output);
+						showOutput(output);//showing user logged
 					}
 					break;
 				case 8:

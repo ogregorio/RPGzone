@@ -16,7 +16,7 @@ public class Normal extends User{
 	public void leaveRoom(long roomID) {
 		System.out.println("User leaves normal without to do nothing more");
 	}
-	public void addUser(Room room, User user) {
+	public void addUser(Room room, User user) {//add user gonna unsuccess if the user don't be admin
 		JOptionPane.showMessageDialog(null, "User impossibility run this action because don't allowed to add users in room that you don't are administration power!!!", "Error", JOptionPane.WARNING_MESSAGE);
 	}
 }

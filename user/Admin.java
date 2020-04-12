@@ -20,7 +20,7 @@ public class Admin extends User{
 	public void removeRoom(long roomID) {
 		System.out.println("The remove of room to admin is different because if the user leave room that he created, the room is delete of system.");
 	}
-	public void addUser(Room room, User user) {
+	public void addUser(Room room, User user) {//add user gonna success if the user is admin
 		if(user.getID() != this.getID()) {
 			room.addUser(user);
 		}

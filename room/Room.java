@@ -61,7 +61,7 @@ public class Room {
 		User userInRoom;
 		for(Iterator<User> iterator = this.users.iterator(); response == null && iterator.hasNext();) {
 			userInRoom = (User) iterator.next();
-			if(logged.getID() ==  userInRoom.getID() ) {
+			if(logged.getID() ==  userInRoom.getID() ) {//search user state in room
 				response = userInRoom;
 			}
 		}

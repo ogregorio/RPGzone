@@ -3,7 +3,7 @@ package user;
 import room.Room;
 import utils.Reader;
 
-public abstract class User {
+public abstract class User {//User is an abstract concept into app in which he have methods and attributes that are shared with his children and also have methods that are setted howspec comportament to your children
 	private int userID;
 	private String password;
 	private String type;
@@ -13,10 +13,10 @@ public abstract class User {
 	private static final int MAX_ROOMS = 5;
 	private Room [] rooms = new Room[MAX_ROOMS];
 	private int countRooms = 0;
-	private static int userCounting = 0;
+	private static int userCounting = 0;//this counter never be same, always to staying auto increment he never gonna be the same
 	
 	public static int generateUserID() {
-		return userCounting++;
+		return userCounting++;//auto increment
 	}
 	
 	public abstract void leaveRoom(long roomID);
@@ -34,9 +34,9 @@ public abstract class User {
 	public Room createRoom() {
 		User adm = new Admin(this.getEmail(), this.getPassword(), this.getNickname(), this.getType(), this.getPro(), this.getID());
 		Room room = new Room(adm , Room.generateRoomID(), Reader.readString("room Nick"));
-		room.addUser(adm);
-		this.addRoom(room);
-		return room;
+		room.addUser(adm);//adding one copy of user how admin in this room
+		this.addRoom(room);//adding this new room in his list of room
+		return room;//room that to going to be putted on db of app
 		//System.out.println("Creating room...");
 	}
 	
@@ -88,7 +88,7 @@ public abstract class User {
 	}
 	
 	@Override
-	public String toString() {
+	public String toString() {//text form of this object
 		String rooms = "";
 		for(Room room : this.rooms) {
 			if(room != null)
