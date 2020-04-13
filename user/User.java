@@ -3,7 +3,10 @@ package user;
 import room.Room;
 import utils.Reader;
 
-public abstract class User {//User is an abstract concept into app in which he have methods and attributes that are shared with his children and also have methods that are setted howspec comportament to your children
+public abstract class User {
+	/*Usuário é um conceito abstrato no aplicativo, no qual ele tem métodos e atributos que são compartilhados 
+	*com seus filhos e também possui métodos que são configurados como comportamento genericos
+	*/
 	private int userID;
 	private String password;
 	private String type;
@@ -13,10 +16,10 @@ public abstract class User {//User is an abstract concept into app in which he h
 	private static final int MAX_ROOMS = 5;
 	private Room [] rooms = new Room[MAX_ROOMS];
 	private int countRooms = 0;
-	private static int userCounting = 0;//this counter never be same, always to staying auto increment he never gonna be the same
+	private static int userCounting = 0;
 	
 	public static int generateUserID() {
-		return userCounting++;//auto increment
+		return userCounting++;//auto incrementa a quantidade de usuarios
 	}
 	
 	public abstract void leaveRoom(long roomID);
@@ -34,9 +37,9 @@ public abstract class User {//User is an abstract concept into app in which he h
 	public Room createRoom() {
 		User adm = new Admin(this.getEmail(), this.getPassword(), this.getNickname(), this.getType(), this.getPro(), this.getID());
 		Room room = new Room(adm , Room.generateRoomID(), Reader.readString("room Nick"));
-		room.addUser(adm);//adding one copy of user how admin in this room
-		this.addRoom(room);//adding this new room in his list of room
-		return room;//room that to going to be putted on db of app
+		room.addUser(adm);//adiciona uma copia do usuario como admin nessa sala
+		this.addRoom(room);//adiciona esta nova sala na lista de salas
+		return room;//retorna a sala a ser colocada no db do app
 		//System.out.println("Creating room...");
 	}
 	
@@ -88,7 +91,7 @@ public abstract class User {//User is an abstract concept into app in which he h
 	}
 	
 	@Override
-	public String toString() {//text form of this object
+	public String toString() {
 		String rooms = "";
 		for(Room room : this.rooms) {
 			if(room != null)

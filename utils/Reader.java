@@ -4,17 +4,17 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 public class Reader {
-	private static final Scanner READER = new Scanner(System.in);
+	private static final Scanner scanner = new Scanner(System.in);
 	
 	public static int readNumber(String titleField) {
-		System.out.print("Enter value to fill the field " + titleField + " : ");
-		int n = READER.nextInt();
-		READER.nextLine();
+		System.out.print("Enter a valid entry to " + titleField + " : ");
+		int n = scanner.nextInt();
+		scanner.nextLine();
 		return n;
 	}
 	public static String readString(String titleField) {
-		System.out.print("Enter value to fill the field " + titleField + " : ");
-		return READER.nextLine();
+		System.out.print("Enter a valid entry to " + titleField + " : ");
+		return scanner.nextLine();
 	}
 	public static boolean readBoolean(String titleFiels){
 		int response = JOptionPane.showConfirmDialog(null, "This user is " + titleFiels + " ? ");

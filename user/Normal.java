@@ -1,7 +1,5 @@
 package user;
 
-import javax.swing.JOptionPane;
-
 import room.Room;
 
 public class Normal extends User{
@@ -14,9 +12,11 @@ public class Normal extends User{
 		this.setID(userID);
 	}
 	public void leaveRoom(long roomID) {
-		System.out.println("User leaves normal without to do nothing more");
+		System.out.println("User left this room...");
 	}
-	public void addUser(Room room, User user) {//add user gonna unsuccess if the user don't be admin
-		JOptionPane.showMessageDialog(null, "User impossibility run this action because don't allowed to add users in room that you don't are administration power!!!", "Error", JOptionPane.WARNING_MESSAGE);
+	public void addUser(Room room, User user) {
+	/*alerta ao usuário a incapacidade de se adicionar um usuário 
+	se o mesmo nao for um administrador*/
+		System.out.println("You don't have ADMIN POWER!");
 	}
 }

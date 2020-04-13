@@ -15,12 +15,12 @@ public class Admin extends User{
 		this.setID(userID);
 	}
 	public void leaveRoom(long roomID) {
-		System.out.println("The admin have a different implementation because if he to it are leaving of room that he created automatically the administration of room changes to other user present in room ");
+		System.out.println("The control of rooms is passed to another User.");
 	}
 	public void removeRoom(long roomID) {
-		System.out.println("The remove of room to admin is different because if the user leave room that he created, the room is delete of system.");
+		System.out.println("The room will be deleted");
 	}
-	public void addUser(Room room, User user) {//add user gonna success if the user is admin
+	public void addUser(Room room, User user) {//adicionar usuario e bem sucedido se feito por um admin
 		if(user.getID() != this.getID()) {
 			room.addUser(user);
 		}
