@@ -30,6 +30,7 @@ public class LoginFilter implements Filter {
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		
+		
 		if(!httpRequest.getServletPath().startsWith("/api")) {//Requisição de recursos estáticos caso sejam necessários futuramente
 			chain.doFilter(request, response);
 			return;
@@ -42,6 +43,7 @@ public class LoginFilter implements Filter {
 		}
 		
 		Cookie token = WebUtils.getCookie(httpRequest, "token");
+		System.out.println(token);
 		if(token == null) {
 			httpResponse.sendError(HttpStatus.UNAUTHORIZED.value());
 			return;

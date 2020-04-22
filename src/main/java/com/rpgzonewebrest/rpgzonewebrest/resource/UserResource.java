@@ -11,15 +11,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rpgzonewebrest.dao.DAO;
 import com.rpgzonewebrest.models.user.Normal;
 import com.rpgzonewebrest.repository.DataBaseFake;
+import com.rpgzonewebrest.service.AuthServices;
 
 @CrossOrigin("*")
 @RestController
@@ -28,15 +29,16 @@ public class UserResource {
 	
 	private DAO<Normal, Long> normalDAO = DataBaseFake.getUserData();
 	
-	@PostMapping
-	public ResponseEntity<Void> add(@RequestBody Normal user) {
+	@PostMapping(produces="application/json")
+	public ResponseEntity<Normal> add(@RequestBody Normal user) {
 		//Rota de registro de usuário fazer validação de usuários iguais na base
 		normalDAO.add(user);
-		return ResponseEntity.noContent().build();
+		return ResponseEntity.ok(user);
 	}//Deu Certo
 	
 	@GetMapping(produces="application/json")
-	public @ResponseBody ResponseEntity<List<Normal>> getAll(@RequestAttribute("userID") Long idUserLogged){//Retorna todos os usuários
+	public @ResponseBody ResponseEntity<List<Normal>> getAll(@RequestParam(required = false) String token){//Retorna todos os usuários
+		Long idUserLogged = AuthServices.requireDecryption(token);
 		Normal userLogged = normalDAO.get(idUserLogged);//recuperando os dados do usuário logado caso não esteja logado retorna null
 		if(userLogged == null) {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
@@ -46,7 +48,8 @@ public class UserResource {
 	}//Deu certo
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Normal>  get(@PathVariable Long id, @RequestAttribute("userID") Long idUserLogged) {
+	public ResponseEntity<Normal>  get(@PathVariable Long id, @RequestParam(required = false) String token) {
+		Long idUserLogged = AuthServices.requireDecryption(token);
 		Normal user = normalDAO.get(id);
 		if(user == null) {//usuário não encontrado
 			return ResponseEntity.notFound().build();
@@ -59,8 +62,8 @@ public class UserResource {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> delete(@PathVariable Long id, @RequestAttribute("userID") Long idUserLogged) {
-		
+	public ResponseEntity<Void> delete(@PathVariable Long id, @RequestParam(required = false) String token) {
+		Long idUserLogged = AuthServices.requireDecryption(token);
 		Normal user = normalDAO.get(id);
 		if(user == null) {//Se o usuário passar um id inexistente na base de dados já bloqueia antes mesmo de verificar se ele está logado ou não
 			return ResponseEntity.notFound().build();
@@ -79,7 +82,8 @@ public class UserResource {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Normal> update(@PathVariable Long id, @RequestBody Normal newUser, @RequestAttribute("userID") Long idUserLogged){
+	public ResponseEntity<Normal> update(@PathVariable Long id, @RequestBody Normal newUser, @RequestParam(required = false) String token){
+		Long idUserLogged = AuthServices.requireDecryption(token);
 		Normal user = normalDAO.get(id);
 		if(user == null) {//Se o usuário passar um id inexistente na base de dados já bloqueia antes mesmo de verificar se ele está logado ou não
 			return ResponseEntity.notFound().build();
