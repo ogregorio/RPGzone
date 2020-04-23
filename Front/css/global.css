@@ -112,3 +112,6 @@
 * {
     transition: .3s;
 }
+.img-circle {
+    border-radius: 100%;
+}

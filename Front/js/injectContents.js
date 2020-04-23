@@ -9,3 +9,4 @@ const alreadyLogged = () => {
 		window.location.href = "./dashboard.html";
 	}
 }
+
