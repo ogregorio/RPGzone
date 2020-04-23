@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/be-a-pro.css">
+    <link rel="stylesheet" type="text/css" href="../css/global.css">
+    <title>Be a PRO!</title>
+</head>
+<body id="body" onload="inject()">
+    <div id="header">
+        <img id="logo" src="../assets/logo.png">
+     </div>`
+    <span id="slogan">GET SUPER POWERS!</span>
+    <div class="request">
+        <h1>Be a PRO!</h1>
+        <form method="post">
+            <input type="text" name="name" placeholder="Name" required="required" />
+            <input type="text" name="lastname" placeholder="Last name" required="required" />
+            <input type="text" name="rg" id="rg" maxlength="10" placeholder="RG" onkeyup="mascara('##.###.###',this,event,true)" required="required"/>
+            <input type="text" name="cpf" id="cpf" maxlength="14" placeholder="CPF" onkeyup="mascara('###.###.###-##',this,event,true)" required="required"/>
+            <input type="password" name="password" placeholder="Password" required="required" />
+            <button type="submit" class="btn btn-primary btn-block btn-large">Let's go.</button>
+            <p>You can be a PRO later? <a href="dashboard.html">Go back</a></p>
+        </form>
+    </div>
+    <script src="../js/masks.js"></script>
+</body>
+</html>
