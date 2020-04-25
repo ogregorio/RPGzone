@@ -50,13 +50,17 @@ body {
     border-radius: 8px;
     padding: 1% 2% 1% 2%;
     position: relative;
-    margin: 8% auto auto auto;
+    margin: 70px auto auto auto;
     width: 25em;
     height: 400px;
     display: block;
 }
 .signup h1 {padding: 5%; color: #fff; text-shadow: 0 0 10px rgba(0,0,0,0.3); letter-spacing:1px; text-align:center;font-family: 'Press Start 2P', cursive; }
 .signup p {text-align:center; color:#fff;font-family: Open Sans;} .signup a{color: #ffa201;}.signup a:link{color: #ffa201;}
+.signup a{
+    color:#ffa201;
+    text-decoration: none;
+}
 input { 
     width: 100%; 
     margin-bottom: 10px; 

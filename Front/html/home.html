@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/home.css">
-	<script src="../js/sessionStore.js"></script>
-    <script type="text/javascript" src="../js/injectContents.js"></script>
+	<link rel="stylesheet" type="text/css" href="../css/global.css">
+    <script type="text/javascript" src="../js/globalJS.js"></script>
     <title>Login</title>
 </head>
-<body id="body" onload="inject()">
+<body id="body" onload="loadPage()">
     <div id="header">
         <img id="logo" src="../assets/logo.png">
      </div>`
@@ -24,6 +24,11 @@
     </div>
 	<script src="../js/fetch.js"></script>
 	<script src="../js/methods.js"></script>
+	<script>
+		const loadPage = () => {
+			Fetch.userIsAuthenticated("http://localhost:9090/account/authenticated");//se usuário já estiver autenticado ou seja com um token jwt válido e ativo então ele será redirecionado para dashboard;
+		}
+	</script>
 </body>
 </html>
 
