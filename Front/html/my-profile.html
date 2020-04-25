@@ -8,13 +8,13 @@
     <title>My Profile</title>
     <link rel="stylesheet" type="text/css" href="../css/forms.css">
     <link rel="stylesheet" type="text/css" href="../css/global.css">
-    <link rel="stylesheet" type="text/css" href="../css/features/buttons.css">
+    <link rel="stylesheet" type="text/css" href="../css/buttons.css">
     <link rel="stylesheet" type="text/css" href="../css/fontawesome/css/all.css">
     <link rel="stylesheet" type="text/css" href="../css/features/menu.css">
-
+	<script type="text/javascript" src="../js/globalJS.js"></script>
 </head>
 
-<body onload="loadUser()">
+<body onload="loadProfile()">
     <div id="header">
         <img id="logo" src="../assets/logo.png">
         <i class="menu-open fas fa-bars"></i>
@@ -29,14 +29,14 @@
     <div id="profile">
 
         <div class="dates" id="personal-dates">
-            <form onsubmit="event.preventDefault();">
+            <form class="dates-fields" onsubmit="event.preventDefault(); updateProfile()">
 
-                <h1>Edit Profile</h1>
                 <div id="avatar">
-                    <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
+                    <h1>Edit Profile</h1>
+                    <img id="profile-picture" src="#" class="avatar img-circle" alt="avatar">
                 </div>
 
-                <div class="dates-fields">
+                <div id="date-fields">
 
                     <label>E-mail</label>
                     <input type="email" name="email" placeholder="E-mail" value="email" required="required" /><br>
@@ -54,9 +54,9 @@
                     <textarea class="bio" type="textarea" name="bio" placeholder="Talk more about you..." ></textarea>
                 </div>
                 <div class="buttons-field">
-                    <button onclick="location.href = '../html/dashboard.html';" class="btn-no btn-no-primary btn-no-large">Cancel</button>
-                    <button type="submit" class="btn-yes btn-yes-primary btn-yes-large">Update</button>
-                </div>
+                  <button onclick="location.href = '../html/dashboard.html';" class="btn-no btn-no-primary btn-no-large">Cancel</button>
+                 <button type="submit" class="btn-yes btn-yes-primary btn-yes-large">Update</button>
+                </div>    
             </form>
         </div>
 
@@ -66,7 +66,6 @@
 </body>
 <script src="../js/fetch.js"></script>
 <script src="../js/userMethods.js"></script>
-<script src="../js/injectContents.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="../js/menu.js"></script>
 

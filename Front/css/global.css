@@ -2,6 +2,10 @@
 @import url(https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap&subset=latin-ext);
 @import url(../css/fontawesome/css/all.css);
 
+button:focus{
+  outline-style: none;
+}
+
 .btn {
     display: inline-block;
     *display: inline;

@@ -10,6 +10,8 @@
 	<link rel="stylesheet" type="text/css" href="../css/global.css">
 	<link rel="stylesheet" type="text/css" href="../css/fontawesome/css/all.css">
 	<link rel="stylesheet" type="text/css" href="../css/features/menu.css">
+	<script src="../js/fetch.js"></script>
+	<script src="../js/userMethods.js"></script>
 </head>
 
 <body onload="loadUser()">
@@ -23,13 +25,13 @@
 	<!-- ----------------------- Fim do Menu Lateral------------------------------------------ -->
 	<div id="dashboard">
 		<div class="section" id="my-profile">
-			<p>My nick:</p>
+			<p id="nick-field" >My nick:</p>
 			<span id="my-nickname" name="my-nickname"></span><br>
-			<p>My ID:</p>
+			<p id="id-field" >My ID:</p>
 			<span id="my-id" name="my-id"></span><br>
-			<p>My Last Login:</p>
+			<p id="last-login-field" >My Last Login:</p>
 			<span id="my-last-login" name="my-last-login"></span><br>
-			<p>My PRO state:</p>
+			<p id="pro-state-field" >My PRO state:</p>
 			<span id="my-pro-state" name="my-pro-state"></span>
 		</div>
 
@@ -38,16 +40,13 @@
 			<span id="recent-room-id" name="recent-room-id"></span><br>
 			<p>Next Session:</p>
 			<span id="recent-room-next-session" name="recent-room-next-session"></span><br>
-			<p>Total Players:</p>
+			<p id="total-players-field" >Total Players:</p>
 			<span id="recent-room-total-players" name="recent-room-total-players"></span><br>
 		</div>
 
 	</div>
 
 </body>
-<script src="../js/fetch.js"></script>
-<script src="../js/userMethods.js"></script>
-<script src="../js/injectContents.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="../js/menu.js"></script>
 <script src="../js/globalJS.js"></script>

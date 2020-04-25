@@ -1,9 +1,9 @@
-var corCompleta = "#65a85e"
-var corIncompleta = "#c62b0f"
+const corCompleta = "#65a85e"
+const corIncompleta = "#c62b0f"
 
 function ResetCampos(){
-    var textFields = document.getElementsByTagName("input");
-        for(var i=0; i < textFields.length; i++){
+    let textFields = document.getElementsByTagName("input");
+        for(let i=0; i < textFields.length; i++){
         if(textFields[i].type == "text"){
             textFields[i].style.backgroundColor = "";
             textFields[i].style.borderColor = "";
@@ -12,9 +12,9 @@ function ResetCampos(){
 }
 
 function coresMask(t){
-	var l = t.value;
-	var m = l.length;
-	var x = t.maxLength;
+	const l = t.value;
+	const m = l.length;
+	const x = t.maxLength;
 	if(m==0){
 		t.style.borderColor="";
 		t.style.backgroundColor="";
@@ -29,11 +29,11 @@ function coresMask(t){
 }
 
 function mascara(m,t,e,c){
-	var cursor = t.selectionStart;
-	var texto = t.value;
+	let cursor = t.selectionStart;
+	let texto = t.value;
 	texto = texto.replace(/\D/g,'');
-	var l = texto.length;
-	var lm = m.length;
+	let l = texto.length;
+	let lm = m.length;
 	if(window.event) {                  
 	    id = e.keyCode;
 	} else if(e.which){                 
@@ -41,7 +41,7 @@ function mascara(m,t,e,c){
 	}
 	cursorfixo=false;
 	if(cursor < l)cursorfixo=true;
-	var livre = false;
+	let livre = false;
 	if(id == 16 || id == 19 || (id >= 33 && id <= 40))livre = true;
  	ii=0;
  	mm=0;
