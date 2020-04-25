@@ -1,13 +1,13 @@
 package com.rpgzonewebrest.models.user;
 
-import com.rpgzonewebrest.models.room.Room;
-//import utils.Reader;
-
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import com.rpgzonewebrest.models.room.Room;
+//import utils.Reader;
 
 public abstract class User implements Serializable {/**
 	 * 
@@ -17,9 +17,12 @@ public abstract class User implements Serializable {/**
 	private Long userID;
 	private String password;
 	private String type;
-	private String userName;
+	private String nickName;
 	private String email;
 	private boolean pro;
+	private Date lastLogin;
+	private String profilePicture;
+	private String bio;
 	private List<Room> rooms = new ArrayList<Room>();
 	private static Long userCounting = new Long(0);//this counter never be same, always to staying auto increment he never gonna be the same
 	
@@ -40,7 +43,7 @@ public abstract class User implements Serializable {/**
 		return null;
 	}
 	/*public Room createRoom() {
-		Admin adm = new Admin(this.getEmail(), this.getPassword(), this.getUserName(), this.getType(), this.getPro(), this.getID());
+		Admin adm = new Admin(this.getEmail(), this.getPassword(), this.getnickName(), this.getType(), this.getPro(), this.getID());
 		Room room = new Room(adm , Room.generateRoomID(), Reader.readString("room Nick"));
 		adm.addRoom(room);
 		room.addUser((Normal) this);//adicionando o usu�rio que criou a sala na lista de usu�rios da sala
@@ -48,6 +51,9 @@ public abstract class User implements Serializable {/**
 		return room;//retorna sala que ser� colocada no RoomDAO no app;
 	}
 	*/
+	public static Long getUserCounting() {
+		return new Long(userCounting.longValue());
+	}
 	public Long getID() {
 		return userID;
 	}
@@ -69,11 +75,11 @@ public abstract class User implements Serializable {/**
 	public void getRoomId(Room room) {
 		room.getID();
 	}
-	public String getUserName() {
-		return userName;
+	public String getNickName() {
+		return nickName;
 	}
-	public void setNickname(String userName) {
-		this.userName = userName;
+	public void setNickname(String nickName) {
+		this.nickName = nickName;
 	}
 	public String getEmail() {
 		return email;
@@ -106,9 +112,11 @@ public abstract class User implements Serializable {/**
 		return "userID : " + this.userID + "\n" +
 			   "password : " + this.password + "\n" +
 			   "type : " + this.type + "\n"+
-			   "nickname : " + this.userName + "\n" +
+			   "nickname : " + this.nickName + "\n" +
 			   "email : " + this.email + "\n"+
 			   "pro ? " + this.pro + "\n" +
+			   "bio : " + this.bio + "\n" +
+			   "last login : " + this.lastLogin + "\n" +
 			   "Rooms of this user => \n"+
 			   userRooms;
 			   
@@ -116,5 +124,29 @@ public abstract class User implements Serializable {/**
 	@Override
 	public boolean equals(Object obj) {
 		return ( this.getID().equals(  ( (User) obj ).getID() ) );
+	}
+
+	public Date getLastLogin() {
+		return lastLogin;
+	}
+
+	public void setLastLogin(Date lastLogin) {
+		this.lastLogin = lastLogin;
+	}
+
+	public String getProfilePicture() {
+		return profilePicture;
+	}
+
+	public void setProfilePicture(String profilePicture) {
+		this.profilePicture = profilePicture;
+	}
+
+	public String getBio() {
+		return bio;
+	}
+
+	public void setBio(String bio) {
+		this.bio = bio;
 	}
 }
