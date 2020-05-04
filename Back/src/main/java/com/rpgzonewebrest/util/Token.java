@@ -1,10 +1,10 @@
-package com.rpgzonewebrest.util;
+package com.rpgzonewebrest.dto;
 
-public class Token {
+public class TokenDTO{
 	
 	private String token;
 	
-	public Token(String token) {
+	public TokenDTO(String token) {
 		this.setToken(token);
 	}
 
@@ -15,5 +15,4 @@ public class Token {
 	public void setToken(String token) {
 		this.token = token;
 	}
-	
 }

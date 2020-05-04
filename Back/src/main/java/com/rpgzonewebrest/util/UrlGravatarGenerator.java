@@ -1,10 +1,10 @@
-package src.main.java.com.rpgzonewebrest.util;
+package com.rpgzonewebrest.util;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-class UrlGravatarGenerator {
+public class UrlGravatarGenerator {
 	public static String urlGravatar(String email) throws NoSuchAlgorithmException {
 	       MessageDigest message = MessageDigest.getInstance("MD5");
 	       message.update(email.getBytes(),0,email.length());

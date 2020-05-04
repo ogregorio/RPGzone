@@ -4,6 +4,7 @@ import java.util.Date;
 
 import com.rpgzonewebrest.models.user.Normal;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
@@ -19,5 +20,12 @@ public class TokenService {
 							.setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME.longValue() ) )
 							.signWith(SignatureAlgorithm.HS256, KEY)
 							.compact();
+	}
+	
+	public static Claims decodeToken(String tokenRestored) {
+		return Jwts.parser()
+					.setSigningKey(KEY)
+					.parseClaimsJws(tokenRestored)
+					.getBody();
 	}
 }

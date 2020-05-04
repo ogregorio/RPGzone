@@ -1,44 +1,47 @@
 package com.rpgzonewebrest.service;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.auth0.jwt.interfaces.DecodedJWT;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+
+import com.rpgzonewebrest.authExceptions.ExpiredTokenException;
+import com.rpgzonewebrest.authExceptions.InvalidTokenException;
 import com.rpgzonewebrest.dao.DAO;
 import com.rpgzonewebrest.models.user.Normal;
 import com.rpgzonewebrest.repository.DataBaseFake;
 
-import java.util.Iterator;
-import java.util.List;
+import io.jsonwebtoken.Claims;
 
 public class AuthServices {
 	
 	private static DAO<Normal, Long> normalDAO = DataBaseFake.getUserData();
 	
-	public static String encrypt(String input) {
-		return "test";
-	}
-	public static  Long requireDecryption(String token) {
+	public static  Long requireDecryption(String token)  throws ExpiredTokenException, InvalidTokenException{
 		System.out.println("token require decryption " + token);
 		if(token == null) {
 			return null;
 		}
-		
 		try {
-			DecodedJWT decodedJWT = JWT.require(Algorithm.HMAC256("Fraseautenticacao123"))//Colocar essa fraseautenticacao123 em outro lugar depois
-								.build()
-								.verify(token);
-			System.out.println("DecodedJWT " + decodedJWT);
-			Long userLoggedID = decodedJWT.getClaim("userID").asLong();
-			System.out.println("userLoggedID DECRYPTED teste String " + decodedJWT.getClaim("userID").asString());
-			System.out.println("userLoggedID DECRYPTED teste sem tipo " + decodedJWT.getClaim("userID"));
-			System.out.println("userLoggedID DECRYPTED teste Integer " + decodedJWT.getClaim("userID").asInt());
-			//chamada autenticada 
-			return userLoggedID;
-		} catch(JWTVerificationException ex) {
-			ex.printStackTrace();
-			return null;
+			String tokenRestored = token.replace("Bearer ", "");
+			Claims claims = TokenService.decodeToken(tokenRestored);
+			System.out.println(claims.getIssuer());
+			System.out.println(claims.getIssuedAt());
+			
+			//verifica se o token expirou
+			if(claims.getExpiration().before( new Date(System.currentTimeMillis() ) )  ) {
+				throw new ExpiredTokenException(claims.getExpiration());
+			}
+			else {
+				Long userID =  Long.parseLong(claims.getSubject());
+				//chamada autenticada 
+				return userID;
+			}
+		} catch(ExpiredTokenException exp) {
+			throw exp;
+		} catch(Exception e) {
+			throw new InvalidTokenException();
 		}
+		
 	}
 	
 	public static Long registeredOnDB(Normal user) {
@@ -46,10 +49,16 @@ public class AuthServices {
 		Normal userOnDB = null;
 		for(Iterator<Normal> iterator = users.iterator(); iterator.hasNext();) {
 			userOnDB = (Normal) iterator.next();
-			if( user.getUserName().equals(userOnDB.getUserName())  && user.getPassword().equals(userOnDB.getPassword()) ) {
+			if( user.getNickName().equals(userOnDB.getNickName())  && user.getPassword().equals(userOnDB.getPassword()) ) {
 				return userOnDB.getID();
 			}
 		}
 		return new Long(0);
+	}
+	
+	public static void updateLastLogin(Normal user, Date now) {
+		Normal userAllData = normalDAO.get(user.getID()) ;
+		userAllData.setLastLogin(now);
+		normalDAO.update(userAllData);
 	}
 }
