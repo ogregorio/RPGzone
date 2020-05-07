@@ -42,19 +42,23 @@ function GetMap(lat,long) {
     map = new Microsoft.Maps.Map('#myMap', {
         center: new Microsoft.Maps.Location(lat,long), //Location center position
         mapTypeId: Microsoft.Maps.MapTypeId.load, //aerial,canvasDark,canvasLight,birdseye,grayscale,streetside
-        zoom: 15  //Zoom:1=zoomOut ~ 20=zoomUp
+        zoom: 17  //Zoom:1=zoomOut ~ 20=zoomUp
     });
 }
 
-function refreshMap(country,zipcode){
-    var requestURL = "http://dev.virtualearth.net/REST/v1/Locations?countryRegion="+country+"&postalCode="+zipcode+"&key=AnzqHklo_lvZR_czqcvXPo-hrYNQ6qElpbIAOWL0U6fgDrJxdvdKazPtBPlFklpu";
+function refreshMap(country,zipcode,street){
+    var street = street.replace(" ","");
+    var zipcode = zipcode.replace("-","");
+    var requestURL = "http://dev.virtualearth.net/REST/v1/Locations?countryRegion="+country+"&postalCode="+zipcode+"&addressLine="+street+"&key=AnzqHklo_lvZR_czqcvXPo-hrYNQ6qElpbIAOWL0U6fgDrJxdvdKazPtBPlFklpu";
     console.log(requestURL);
     var request = new XMLHttpRequest();
     request.open('GET', requestURL);
     request.responseType = 'json';
     request.send();
     request.onload = function latitude(){
-        GetMap(request.resourcesSets.resources.point.coordinates);
+        var lat = request.response.resourceSets[0].resources[0].bbox[0];
+        var long = request.response.resourceSets[0].resources[0].bbox[1];
+        GetMap(lat,long);
     }
     
     document.getElementById("reload").style.display = 'none';

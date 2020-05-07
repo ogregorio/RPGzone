@@ -124,8 +124,10 @@ button:focus{
 .blur-purple-light {
     background: rgba(140,50,110,0.7);
     backdrop-filter: blur(7px);
+    box-shadow: 2px 2px 5px rgba(0,0,0,.5);
 }
 .blur-purple-dark{
     background: rgba(90, 10, 63, 0.7);
     backdrop-filter: blur(7px);
+    box-shadow: 2px 2px 5px rgba(0,0,0,.5);
 }
