@@ -51,6 +51,22 @@ public class RoomResource {
 		return ResponseEntity.ok(roomsDTO);
 	}
 	
+	@GetMapping("/{id}")
+	public ResponseEntity<RoomDTO> getOneRoom(@RequestHeader String Authorization, @PathVariable Long id){
+		try {
+			AuthServices.requireDecryption(Authorization);//testando se o token está válido
+		} catch(ExpiredTokenException | InvalidTokenException e) {
+			e.printStackTrace();//debug
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+		}
+		
+		Room room = roomDAO.get(id);
+		if(room != null) {
+			return ResponseEntity.ok(new RoomDTO(room));
+		}
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+	}
+	
 	@PostMapping(produces="application/json")
 	public ResponseEntity<RoomDTO> registerRoom(@RequestHeader String Authorization, @RequestBody Room room){
 		Long idUserLogged;
