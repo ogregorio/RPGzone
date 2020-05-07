@@ -31,7 +31,7 @@
     z-index: 250;
     transition: 0.5s;
     width: 250px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Baloo Da 2";
     backdrop-filter: blur(8px);
 }
 .menu ul{
@@ -62,7 +62,6 @@
     text-decoration: none;
 }
 .menu i{
-    color: #ffa201;
     width: 25px;
 }
 i.menu-open{
@@ -72,4 +71,9 @@ i.menu-open{
     float: right;
     margin-top: -45px;
     cursor: pointer;
+}
+.menu .fas::before{
+    background-image: linear-gradient(60deg, #ff5500, #faa647);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }

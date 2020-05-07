@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 @import url(https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap&subset=latin-ext);
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700&display=swap");
 @import url(../css/fontawesome/css/all.css);
 
 button:focus{
@@ -82,8 +83,11 @@ button:focus{
     border: 1px solid #ff5500;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
     box-shadow: inset 0 1px 0 #ffa201, 0 1px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 5px 5px 3px rgba(0, 0, 0, 0.3);
 }
-
+.btn-primary:hover {
+    box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
 .btn-primary:hover,
 .btn-primary:active,
 .btn-primary.active,
