@@ -3,9 +3,6 @@ body {
     width: 100%;
     height:100%;
     font-family: 'Open Sans', sans-serif;
-    background-size:cover;
-    background: #3c4246;
-
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );  
 }
 #dashboard{
@@ -14,17 +11,60 @@ body {
 }
 
 .section{
-    padding: 2%;
-    background: #292d30;
-    max-width: 30%;
+    padding: 10%;
+    background: rgba(90, 30, 70, 0.7);
+    backdrop-filter: blur(4px);
     border-radius: 8px;
     margin: 10px;
     box-shadow: 2px 2px 5px rgba(0,0,0,.5);
     color: #fff;
-    text-align: left;
 }
 .section p{
     display: inline;
     font-weight: bold;
-    color: #c47694;
+    color: #f97243;
+    opacity: 1;
+    z-index: 4;
+}
+.section-icon {
+    display: block;
+    text-align: center;
+    font-size: 40px;
+    color: #f97243;
+    border: solid 4px;
+    border-radius: 100%;
+    height: 40px;
+    width: 40px;
+    padding: 4%;
+    margin: auto;
+}
+i.section-icon {
+    display: block;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.dashboard {
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+.col-1{
+    width: 20%;
+    height: 100%;
+    float: left;
+    z-index: 4;
+}
+.col-2{
+    width: 40%;
+    height: 100%;
+    float: left;
+    z-index: 4;
+}
+.col-3{
+    width: 40%;
+    height: 100%;
+    float: left;
+    z-index: 4;
 }

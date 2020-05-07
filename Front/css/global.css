@@ -98,7 +98,8 @@ button:focus{
     display: block;
 }
 #header {
-    background: #79366a;
+    background: rgba(90, 10, 63, 0.7);
+    backdrop-filter: blur(7px);
     top: 0%;
     border-bottom: double 0.5em;
     position: fixed;
@@ -118,4 +119,13 @@ button:focus{
 }
 .img-circle {
     border-radius: 100%;
+}
+
+.blur-purple-light {
+    background: rgba(140,50,110,0.7);
+    backdrop-filter: blur(7px);
+}
+.blur-purple-dark{
+    background: rgba(90, 10, 63, 0.7);
+    backdrop-filter: blur(7px);
 }

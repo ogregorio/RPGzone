@@ -8,6 +8,7 @@
     opacity: 0;
     transition: opacity 1s;
     z-index: 249;
+    backdrop-filter: blur(8px);
 }
 .menu-open{
     background: #900;
@@ -21,7 +22,7 @@
 }
 .menu {
     overflow: hidden;
-    background: rgba(0,0,0,.95);
+    background: rgba(52,23,45,.95);
     padding: 40px 0 0 40px;
     position: fixed;
     top: 0;
@@ -31,7 +32,7 @@
     transition: 0.5s;
     width: 250px;
     font-family: 'Open Sans', sans-serif;
-
+    backdrop-filter: blur(8px);
 }
 .menu ul{
     list-style: none;
@@ -40,11 +41,11 @@
     overflow-y: auto;
     width: 500px;
     height: 95%;
+    font-size: 18px;
 }
 .menu ul li a {
     display: inline-block;
-    border-bottom: 1px solid #131313;
-    padding: 6px 4px 6px 4px;
+    padding: 9px 4px 6px 12px;;
     color: #ffa201;
     transition: 0.3s;
     text-decoration: none;
@@ -71,5 +72,4 @@ i.menu-open{
     float: right;
     margin-top: -45px;
     cursor: pointer;
-\
 }

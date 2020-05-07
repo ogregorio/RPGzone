@@ -4,11 +4,13 @@ $(function () {
     let menu_open = $(".menu-open");
     let menu_close = $(".menu-close");
     let overlay = $(".overlay");
-  
+
+
     menu_open.click(function (e) {
       e.preventDefault();
       menu.css({"right": "0px"});
-      overlay.css({"opacity": "1", "width": "100%"});
+	  overlay.css({"opacity": "1", "width": "100%"});
+
     });
     
     menu_close.click(function (e) {

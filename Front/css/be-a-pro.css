@@ -45,13 +45,14 @@ body {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
 }
 .request{ 
-    background: #79366a;
+    background: rgba(140,50,110,0.7);
+    backdrop-filter: blur(5px);
     border-radius: 8px;
     padding: 1% 2% 1% 2%;
     position: relative;
     margin: 70px auto auto auto;
     width: 25em;
-    height: 470px;
+    height: 500px;
     display: block;
 }
 .request h1 {padding: 5%; color: #fff; text-shadow: 0 0 10px rgba(0,0,0,0.3); letter-spacing:1px; text-align:center;font-family: 'Press Start 2P', cursive; }

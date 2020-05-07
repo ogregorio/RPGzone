@@ -14,8 +14,6 @@
 
 html { width: 100%; height:100%; overflow:hidden; }
 
-#header {background:#79366a;top: 0%;border-bottom: double 0.5em;} #header #logo{margin: auto;display: block;}
-
 #slogan{
     font-size: 160%;
     font-family: 'Press Start 2P', cursive;
@@ -45,7 +43,6 @@ body {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756',GradientType=1 );
 }
 .login { 
-    background: #79366a;
     border-radius: 8px;
     padding: 1% 2% 1% 2%;
     position: relative;
