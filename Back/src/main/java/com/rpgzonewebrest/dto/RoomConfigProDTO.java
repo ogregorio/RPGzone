@@ -1,23 +1,22 @@
 package com.rpgzonewebrest.dto;
 
 import com.rpgzonewebrest.models.game.Game;
+import com.rpgzonewebrest.repository.GameDatabase;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RoomConfigProDTO extends RoomConfigDTO {
 	
 	public RoomConfigProDTO() {
-		
 		super();
-		
-		super.getGames().add(new Game("Star Wars: Fronteira do Império", 1987, "Wizards of The Coast", "English", "photo.png"));
+		List<Game> proGames = ( new GameDatabase() ).getPROGames();
+		for(Game game : proGames){
+			super.getGames().add(game);
+		}
 		
 		super.getGameRules().add("- teste de regras de jogo Pro 1  - teste de regras de jogo Pro 1  - teste de regras de jogo Pro 1  - teste de regras de jogo Pro 1  ");
-		
-		super.getPlots().add("teste de enredo Pro 1  teste de enredo Pro 1  teste de enredo Pro 1  teste de enredo Pro 1  teste de enredo Pro 1  teste de enredo Pro 1  teste de enredo Pro 1  teste de enredo Pro 1  ");
-		
-		super.getGames().add(new Game("RuneQuest: Roleplaying in Glorantha", 2018, "Chaosium", "English", "https://upload.wikimedia.org/wikipedia/en/a/a4/Cyberpunk2020.jpg"));
-		
+		super.getPlots().add("teste de enredo Pro 1  teste de enredo Pro 1  teste de enredo Pro 1  teste de enredo Pro 1  teste de enredo Pro 1  teste de enredo Pro 1  teste de enredo Pro 1  teste de enredo Pro 1  ");	
 		super.getGameRules().add("- teste de regras de jogo Pro 2 - teste de regras de jogo Pro 2 - teste de regras de jogo Pro 2 - teste de regras de jogo Pro 2 - teste de regras de jogo Pro 2   !!! ");
-		
 		super.getPlots().add("teste de enredo Pro 2 teste de enredo Pro 2 teste de enredo Pro 2 teste de enredo Pro 2 teste de enredo Pro 2 teste de enredo Pro 2 ");
 	}
 }

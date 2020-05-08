@@ -1,8 +1,16 @@
 package com.rpgzonewebrest.repository;
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameDatabase {
 
-	ArrayList<Game> freeGames = new ArrayList<Game>();
-	ArrayList<Game> PROGames = new ArrayList<Game>();
+	private List<Game> freeGames = new ArrayList<Game>();
+	private List<Game> PROGames = new ArrayList<Game>();
+	
+	public GameDatabase() {
+		this.genFreeGamesDB();
+		this.genPROGamesDB();
+	}
 	
 	public void genFreeGamesDB() {
 	freeGames.add(new Game(
@@ -95,5 +103,12 @@ public class GameDatabase {
 				"Tormenta.jpg",
 				"https://drive.google.com/file/d/13SVmcsJbUBsX0YZ0MlQgZcNsaDYXkJUc/view"
 				));
+	}
+	
+	public static List<Game> getFreeGames(){
+		return freeGames;
+	}
+	public static List<Game> getPROgames() {
+		return PROGames;
 	}
 }

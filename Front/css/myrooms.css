@@ -1,0 +1,43 @@
+h1 {
+	font-family: "Press Start 2P", cursive;
+	color: rgb(255, 255, 255);
+}
+
+.rooms-result {
+    display: flex;
+    height: 100%;
+    max-width: 1000px;
+    flex-direction: row;
+	margin: 0 auto;
+	flex-wrap : wrap;
+	justify-content: center;
+}
+
+.rooms-result > div {
+    flex: 1;
+	height: 100%;
+    font-family: "Press Start 2P", cursive;
+    text-align: left;
+    color: rgb(255, 255, 255);
+    background: orange;
+    border-radius: 20px;
+    border-bottom: 10px solid rgb(213, 131, 0);
+    padding: 50px;
+	margin-right : 10px;
+	margin-bottom : 10px;
+}
+.rooms-result> div > button {
+	background : white;
+	border : none;
+	border-bottom : 10px solid grey;
+	border-radius: 20px;
+	width: 200px;
+	height : 50px;
+	box-shadow : 0 0 14px 0 yellow;
+	cursor: pointer;
+	font-family: "Press Start 2P", cursive;
+	font-weight : bold;
+}
+.rooms-result> div > button:hover{
+	border-bottom : 3px solid grey;
+}

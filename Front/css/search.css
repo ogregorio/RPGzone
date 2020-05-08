@@ -1,3 +1,7 @@
+input:focus{
+	outline: 2px solid orange;
+}
+
 .section {
     margin-top: 70px;
     padding: 5%;
@@ -48,3 +52,43 @@
     border: solid #292d30;
     color: #fff;
 }
+
+#search-result {
+    display: flex;
+    height: 100%;
+    max-width: 1000px;
+    flex-direction: row;
+	margin: 0 auto;
+	flex-wrap : wrap;
+	justify-content: center;
+}
+
+#search-result > div {
+    flex: 1;
+	height: 100%;
+    font-family: "Press Start 2P", cursive;
+    text-align: left;
+    color: rgb(255, 255, 255);
+    background: orange;
+    border-radius: 20px;
+    border-bottom: 10px solid rgb(213, 131, 0);
+    padding: 50px;
+	margin-right : 10px;
+	margin-bottom : 10px;
+}
+#search-result> div > button {
+	background : white;
+	border : none;
+	border-bottom : 10px solid grey;
+	border-radius: 20px;
+	width: 200px;
+	height : 50px;
+	box-shadow : 0 0 14px 0 yellow;
+	cursor: pointer;
+	font-family: "Press Start 2P", cursive;
+	font-weight : bold;
+}
+#search-result> div > button:hover{
+	border-bottom : 3px solid grey;
+}
+
