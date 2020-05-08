@@ -82,24 +82,29 @@ const selectedThisRoom = roomID => {
 	});
 }
 
-function isNumeric(str)
-{
-  var er = /^[0-9]+$/;
-  return (er.test(str));
+const isNumber = str => {
+    return !isNaN(str)
+}
+
+const clearString = wordField => {                
+    let newString = "";           
+    for( let i = 0; i < wordField.length; i++ ) {       
+        if( wordField.charAt(i) != " " ) {           
+            newString += wordField.charAt(i);                  
+        }
+    }        
+	return wordField.trim();
 }
 
 const searchKeyword = (props) => {
 	const { room, searchField, filters  } = props;
 	let finded = false;
 	let content = "";
-	let searchFieldText = isNumeric(searchField.value) ? searchField.value : ( searchField.value ).toUpperCase();
+	let searchFieldText = isNumber(searchField.value) ? clearString(searchField.value) : clearString( ( searchField.value ).toUpperCase() );
 	
 	const waysOfCompare = {
 		"compareByNick" : () => {
-			window.alert(searchFieldText);
-			window.alert(room.roomNick.toUpperCase());
-			window.alert(( room.roomNick ).toUpperCase() == searchFieldText);
-			return ( room.roomNick ).toUpperCase() == searchFieldText;
+			return clearString( ( room.roomNick ).toUpperCase() ) == searchFieldText;
 		},
 		"compareByID" : () => {
 			return room.roomID == searchFieldText;
@@ -107,14 +112,14 @@ const searchKeyword = (props) => {
 		"compareByPlayer" : () => {
 			let findedUser = false;
 			room.users.forEach( user => {
-				if( ( user.nickName ).toUpperCase() == searchFieldText )
+				if( clearString( ( user.nickName ).toUpperCase() ) == searchFieldText )
 					findedUser = true;
 			});
 			return findedUser;
 		},
 		"compareByGame" : () => {
 			if(room.roomConfig != null)
-				return ( room.roomConfig.game.title ).toUpperCase() == searchFieldText;
+				return clearString( ( room.roomConfig.game.title ).toUpperCase() ) == searchFieldText;
 			return false;
 		},
 		"default" : () => {

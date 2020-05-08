@@ -44,7 +44,7 @@ const signIn = () => {
 }
 
 const createRoom = () => {
-	let roomNick = document.getElementsByName("room-nick")[0].value;
+	let roomNick = (document.getElementsByName("room-nick")[0].value).trim();
 	let roomDescription = document.getElementsByName("room-description")[0].value;
 	let popUp = document.getElementsByClassName("modal-container")[0];
 	let data = {
