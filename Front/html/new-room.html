@@ -45,12 +45,12 @@
 	<div class="modal-container hidden-flex-container" id="background-pop-up" >
 		<div class="modal-content">
 			<div>
-				<h1>You accept to configure the new room that you finished of create?</h1>
+				<h1>Do you really want to create a new room?</h1>
 			</div>
 			<div>
 				<form>
-					<button onclick="event.preventDefault(); redirectRoomConfig()" type="submit" class="green-button">Accept</button>
-					<button onclick="event.preventDefault(); closePopUp()" type="submit" class="red-button">Decline</button>
+					<button onclick="event.preventDefault(); closePopUp()" type="submit" class="btn-no btn-no-primary btn-no-large">Decline</button>
+					<button onclick="event.preventDefault(); redirectRoomConfig()" type="submit" class="btn-yes btn-yes-primary btn-yes-large">Accept</button>
 				</form>
 			</div>
 		</div>

@@ -10,6 +10,7 @@
 	justify-content : center;
 	align-items : center;
 	animation : modal .3s linear;
+	backdrop-filter: blur(8px);
 }
 
 .modal-content {
@@ -20,7 +21,6 @@
 	height : 200px;
 	background : white;
 	border-radius : 20px;
-	border-bottom : 10px solid grey;
 	box-shadow : 0 0 100px 0 purple;
 	padding : 20px;
 	grid-gap : 40px;
@@ -28,6 +28,7 @@
 .modal-content > div > h1 {
 	font-family: "Press Start 2P", cursive;
 	font-size : 1.3em;
+	text-align: center;
 }
 .modal-content > div > form{
 	display : flex;

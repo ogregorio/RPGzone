@@ -131,12 +131,12 @@ const searchKeyword = (props) => {
 	}
 	return finded	? `
 						<div>
-							<span> - ID : ${room.roomID}</span><br/><br/>
-							<span> - Room Nick : ${room.roomNick}</span><br/><br/>
-							<span> - Room Description : ${room.roomDescription}</span><br/><br/>
-							<span> - Room Game : ${ room.roomConfig != null ? room.roomConfig.game.title : "null"}</span><br/><br/>
-							<span> - Qtd players : ${ room.qtdeUsersInRoom}</span><br/><br/>
-							<button onclick=selectedThisRoom(${room.roomID})>Enter in this room</button>
+							<span> - ID : ${room.roomID}</span><br/>
+							<span> - Room Nick : ${room.roomNick}</span><br/>
+							<span> - Room Description : ${room.roomDescription}</span><br/>
+							<span> - Room Game : ${ room.roomConfig != null ? room.roomConfig.game.title : "null"}</span><br/>
+							<span> - Qtd players : ${ room.qtdeUsersInRoom}</span><br/>
+							<button class="btn btn-primary btn-large" onclick=selectedThisRoom(${room.roomID})>Enter in this room</button>
 						</div> ` 
 					: " ";
 	
@@ -168,12 +168,12 @@ const searchExec = myRooms => {
 				content +=  (myRooms.indexOf(room.roomID) == -1) 	&&
 							(parseInt(room.qtdeUsersInRoom) < 6) 	? 
 																	`	<div>
-																			<span> - ID : ${room.roomID}</span><br/><br/>
-																			<span> - Room Nick : ${room.roomNick}</span><br/><br/>
-																			<span> - Room Description : ${room.roomDescription}</span><br/><br/>
+																			<span> - ID : ${room.roomID}</span><br/>
+																			<span> - Room Nick : ${room.roomNick}</span><br/>
+																			<span> - Room Description : ${room.roomDescription}</span><br/>
 																			<span> - Room Game : ${ room.roomConfig != null ? room.roomConfig.game.title : "null"}</span><br/><br/>
-																			<span> - Qtd players : ${ room.qtdeUsersInRoom}</span><br/><br/>
-																			<button onclick=selectedThisRoom(${room.roomID})>Enter in this room</button>
+																			<span> - Qtd players : ${ room.qtdeUsersInRoom}</span><br/>
+																			<button class="btn-yes btn-yes-primary btn-yes-large" onclick=selectedThisRoom(${room.roomID})>Enter in this room</button>
 																		</div>`
 																	:
 																		" ";
@@ -223,12 +223,12 @@ const loadMyRooms = () => {
 	.then( resp => {
 		resp.forEach( room => {
 			content += `	<div>
-								<span> - ID : ${room.roomID}</span><br/><br/>
-								<span> - Room Nick : ${room.roomNick}</span><br/><br/>
-								<span> - Room Description : ${room.roomDescription}</span><br/><br/>
-								<span> - Room Game : ${ room.roomConfig != null ? room.roomConfig.game.title : "null"}</span><br/><br/>
-								<span> - Qtd players : ${ room.qtdeUsersInRoom}</span><br/><br/>
-								<button onclick=enterInThisRoom(${room.roomID})>Enter in this room</button>
+								<span> - ID : ${room.roomID}</span><br/>
+								<span> - Room Nick : ${room.roomNick}</span><br/>
+								<span> - Room Description : ${room.roomDescription}</span><br/>
+								<span> - Room Game : ${ room.roomConfig != null ? room.roomConfig.game.title : "null"}</span><br/>
+								<span> - Qtd players : ${ room.qtdeUsersInRoom}</span><br/>
+								<button class="btn-yes btn-yes-primary btn-yes-large" onclick=enterInThisRoom(${room.roomID})>Enter in this room</button>
 							</div>`;
 			count++;
 		});

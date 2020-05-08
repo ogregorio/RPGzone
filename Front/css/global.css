@@ -2,6 +2,13 @@
 @import url(https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap&subset=latin-ext);
 @import url("https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@400;500;600;700&display=swap");
 @import url(../css/fontawesome/css/all.css);
+body{
+    font-family: "Baloo Da 2";
+    margin: 0px;
+    width: 100%;
+    height:100%;
+    background-size:cover;
+}
 
 button:focus{
   outline-style: none;
