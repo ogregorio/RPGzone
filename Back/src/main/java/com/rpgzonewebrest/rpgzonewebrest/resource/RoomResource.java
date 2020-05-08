@@ -85,7 +85,7 @@ public class RoomResource {
 			
 			return ResponseEntity.ok( new RoomDTO(room) );
 		}
-		return ResponseEntity.status(HttpStatus.BANDWIDTH_LIMIT_EXCEEDED).build();
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		
 	}
 	

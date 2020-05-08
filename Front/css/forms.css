@@ -5,6 +5,10 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
+input:focus, textarea:focus {
+	outline: 2px solid orange;
+}
+
 #profile,#new-room-form {
         margin-top: 50px;
         padding: 2%;

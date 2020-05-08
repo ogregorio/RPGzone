@@ -35,10 +35,42 @@ const signIn = () => {
 		session.token = resp.token;//armazenando o token jwt para o usuário estar autenticado em requisições posteriores
 		localStorage.setItem("session", JSON.stringify(session));
 		setTimeout( () => {
-			window.location.href = "./dashboard.html";
+			window.location.href = "./be-a-pro-request.html";
 		}, 1000);
 	})
 	.catch(_ => {
 		window.alert("An Error occurred with your credentials try sign up in sign up page");
 	});
 }
+
+const createRoom = () => {
+	let roomNick = document.getElementsByName("room-nick")[0].value;
+	let roomDescription = document.getElementsByName("room-description")[0].value;
+	let popUp = document.getElementsByClassName("modal-container")[0];
+	let data = {
+		"roomNick" : roomNick,
+		"roomDescription" : roomDescription
+	}
+	
+	Fetch.postAuth("http://localhost:9090/rooms", data)
+	.then( resp => {
+		console.log(resp);
+		popUp.classList.remove("hidden-flex-container");
+		popUp.classList.add("show-flex-container");
+		popUp.addEventListener('click', (e) => {
+			if(e.target.id == "background-pop-up")
+				closePopUp();
+		});
+	})
+	.catch(_ => {
+		window.alert("You arrived on the  limit of creation of the rooms !!!");
+	});
+}
+
+const closePopUp = () => {
+	let popUp = document.getElementsByClassName("modal-container")[0];
+	popUp.classList.add("hidden-flex-container");
+	popUp.classList.remove("show-flex-container");
+}
+
+const redirectRoomConfig = () => { window.location.href = "./new-room-options.html"; }

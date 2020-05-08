@@ -14,6 +14,9 @@ Fetch = {
 					window.alert("UNAUTHORIZED");
 					window.location.href = "./home.html";
 				}
+				if(resp.status == 404){
+					window.location.href = "./404.html";
+				}
 				else if(resp.status !== 200){
 					reject("Don't was possible to make this action");
 				} else {
@@ -38,6 +41,9 @@ Fetch = {
 				mode: "cors"
 			})
 			.then( resp => {
+				if(resp.status == 404){
+					window.location.href = "./404.html";
+				}
 				if(resp.status == 401){
 					window.alert("UNAUTHORIZED !!! Try login later");
 					window.location.href = "./home.html";
@@ -65,6 +71,9 @@ Fetch = {
 				mode: "cors"
 			})
 			.then( resp => {
+				if(resp.status == 404){
+					window.location.href = "./404.html";
+				}
 				if(resp.status === 200 || resp.status === 204 || resp.status === 203 || resp.status === 202 || resp.status === 201){
 					window.location.href = "./be-a-pro-request.html";//se o usuário já estiver autenticado ele será redirecionado direto para a página sua dashboard com seu perfil
 				}
@@ -86,6 +95,9 @@ Fetch = {
 				body: JSON.stringify(data)
 			})
 			.then( res => {
+				if(res.status == 404){
+					window.location.href = "./404.html";
+				}
 				if(res.status == 401){
 					window.alert("UNAUTHORIZED!!! Try login later");
 					window.location.href = "./home.html";
@@ -120,13 +132,45 @@ Fetch = {
 				body : JSON.stringify(data)
 			})
 			.then( resp => {
+				if(resp.status == 404){
+					window.location.href = "./404.html";
+				}
 				if(resp.status == 401){
 					window.alert("UNAUTHORIZED");
 					window.location.href = "./home.html";
-				} else if(res.status !== 200 && res.status !== 204 && res.status !== 203 && res.status != 202 && res.status != 201){
+				} else if(resp.status !== 200 && resp.status !== 204 && resp.status !== 203 && resp.status != 202 && resp.status != 201){
 					reject("Don't was possible to make this action");
 				} else{
 					resp.json().then( data => { resolve(data) });
+				}
+			})
+			.catch(_ => {
+				window.alert("Server unavailable.");
+			});
+		});
+	},
+	
+	postAuthWithoutResponse : (url) => {
+		const token = JSON.parse(localStorage.getItem("session")).token;
+		return new Promise( (resolve, reject) => {
+			fetch(url, {
+				headers : {
+					'Authorization' : 'Bearer ' + token
+				},
+				method : "POST",
+				mode : "cors"
+			})
+			.then( resp => {
+				if(resp.status == 404){
+					window.location.href = "./404.html";
+				}
+				if(resp.status == 401){
+					window.alert("UNAUTHORIZED");
+					window.location.href = "./home.html";
+				} else if(resp.status !== 200 && resp.status !== 204 && resp.status !== 203 && resp.status != 202 && resp.status != 201){
+					reject("Don't was possible to make this action");
+				} else{
+					resolve(resp);
 				}
 			})
 			.catch(_ => {
@@ -148,6 +192,9 @@ Fetch = {
 				body : JSON.stringify(data)
 			})
 			.then( resp => {
+				if(resp.status == 404){
+					window.location.href = "./404.html";
+				}
 				if(resp.status == 401){
 					window.alert("UNAUTHORIZED!!! Try Login later!!!");
 				} else if(resp.status != 200){

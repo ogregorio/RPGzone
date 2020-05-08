@@ -27,7 +27,7 @@
 
 	<div class="section" id="game-search">
 		<h5>Search for Rooms!</h5>
-		<form id="search-form" method="post">
+		<form id="search-form" onsubmit="event.preventDefault(); searchRooms();">
 			<input type="search" id="search" >
 			<button class="btn btn-primary btn-large" type="submit">Go!</button>
 		  </form>

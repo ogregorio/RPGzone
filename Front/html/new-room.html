@@ -6,11 +6,13 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>New Room</title>
+	<link rel="stylesheet" type="text/css" href="../css/newRoom.css">
 	<link rel="stylesheet" type="text/css" href="../css/forms.css">
 	<link rel="stylesheet" type="text/css" href="../css/global.css">
 	<link rel="stylesheet" type="text/css" href="../css/fontawesome/css/all.css">
     <link rel="stylesheet" type="text/css" href="../css/features/menu.css">
     <link rel="stylesheet" type="text/css" href="../css/features/buttons.css">
+	<link rel="stylesheet" type="text/css" href="../css/newRoom.css">
 </head>
 
 <body>
@@ -26,7 +28,7 @@
 	<div class="dates blur-purple-dark" id="new-room-dates">
 		<div class="section">
 			<h1>New Room</h1>
-			<form onsubmit="event.preventDefault(); signUp()">
+			<form onsubmit="event.preventDefault(); createRoom()">
 			<div class="dates-fields" id="room-dates-fields">
 				<label>Nickname of Room</label>
 				<input type="text" name="room-nick" placeholder="Nick" required="required" />
@@ -40,9 +42,22 @@
 			</form>
 		</div>
 	</div>
+	<div class="modal-container hidden-flex-container" id="background-pop-up" >
+		<div class="modal-content">
+			<div>
+				<h1>You accept to configure the new room that you finished of create?</h1>
+			</div>
+			<div>
+				<form>
+					<button onclick="event.preventDefault(); redirectRoomConfig()" type="submit" class="green-button">Accept</button>
+					<button onclick="event.preventDefault(); closePopUp()" type="submit" class="red-button">Decline</button>
+				</form>
+			</div>
+		</div>
+	</div>
 </body>
 <script src="../js/fetch.js"></script>
-<script src="../js/userMethods.js"></script>
+<script src="../js/methods.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="../js/menu.js"></script>
 <script src="../js/globalJS.js"></script>
