@@ -85,3 +85,12 @@ input:focus, textarea:focus {
     text-align: center;
     padding-top: 3%;
 }
+
+.player {
+    max-width: 30%;
+    line-height: 1em;
+}
+
+.label {
+    font-weight: bold;
+}

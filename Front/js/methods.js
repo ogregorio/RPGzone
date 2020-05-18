@@ -39,7 +39,7 @@ const signIn = () => {
 		}, 1000);
 	})
 	.catch(_ => {
-		window.alert("An Error occurred with your credentials try sign up in sign up page");
+		window.alert("An Error occurred with your credentials try sign in or sign up page");
 	});
 }
 
@@ -63,7 +63,7 @@ const createRoom = () => {
 		});
 	})
 	.catch(_ => {
-		window.alert("You arrived on the  limit of creation of the rooms !!!");
+		window.alert("You arrived the limit of rooms per user !!!");
 	});
 }
 
