@@ -41,17 +41,11 @@ public abstract class User implements Serializable {/**
 		System.out.println("Finding room...");
 		return null;
 	}
-	/*public Room createRoom() {
-		Admin adm = new Admin(this.getEmail(), this.getPassword(), this.getnickName(), this.getType(), this.getPro(), this.getID());
-		Room room = new Room(adm , Room.generateRoomID(), Reader.readString("room Nick"));
-		adm.addRoom(room);
-		room.addUser((Normal) this);//adicionando o usu�rio que criou a sala na lista de usu�rios da sala
-		this.addRoom(room);//adicionando esta nova sala na lista de salas do usu�rio
-		return room;//retorna sala que ser� colocada no RoomDAO no app;
-	}
-	*/
 	public static Long getUserCounting() {
 		return new Long(userCounting.longValue());
+	}
+	public static void setUserCounting(Long value) {
+		userCounting = value;
 	}
 	public Long getID() {
 		return userID;
@@ -98,10 +92,6 @@ public abstract class User implements Serializable {/**
 	public void setRooms(List<Long> rooms) {
 		this.rooms = rooms;
 	}
-	@Override
-	public boolean equals(Object obj) {
-		return ( this.getID().equals(  ( (User) obj ).getID() ) );
-	}
 
 	public Date getLastLogin() {
 		return lastLogin;
@@ -125,5 +115,10 @@ public abstract class User implements Serializable {/**
 
 	public void setBio(String bio) {
 		this.bio = bio;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return ( this.getID().equals(  ( (User) obj ).getID() ) );
 	}
 }

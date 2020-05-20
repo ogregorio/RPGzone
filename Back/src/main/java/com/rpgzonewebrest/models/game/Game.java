@@ -20,7 +20,7 @@ public class Game  implements Serializable{
 		this.publisher = publisher;
 		this.language = language;
 		this.gameImage = gameImage;
-		this.pdfGuide = pdfGuide;
+		this.setPdfGuide(pdfGuide);
 	}
 	public Game() {
 		
@@ -63,6 +63,12 @@ public class Game  implements Serializable{
 	}
 
 	public void pdfGuide(String pdfGuide) {
+		this.setPdfGuide(pdfGuide);
+	}
+	public String getPdfGuide() {
+		return pdfGuide;
+	}
+	public void setPdfGuide(String pdfGuide) {
 		this.pdfGuide = pdfGuide;
 	}
 	
