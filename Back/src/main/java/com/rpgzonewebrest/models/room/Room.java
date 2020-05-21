@@ -27,8 +27,16 @@ public class Room implements Serializable {
 		roomCounting = new Long( roomCounting + 1 );
 		return new Long( roomCounting.longValue() );
 	}
+	public static void setRoomCounting(Long value) {
+		roomCounting = value;
+	}
 	public Room() {
 		//construtor vazio necessário
+	}
+	public Room(Admin admin, String roomNick, String roomDescription) {
+		this.admin = admin;
+		this.roomNick = roomNick;
+		this.roomDescription = roomDescription;
 	}
 	public Admin getAdmin() {
 		return admin;

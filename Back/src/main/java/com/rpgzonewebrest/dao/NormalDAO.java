@@ -84,6 +84,7 @@ public class NormalDAO implements DAO<Normal, Long>{
 	@Override
 	public void delete(Normal user) {
 		List<Normal> users = getAll();
+		
 		int index = users.indexOf(user);
 		if(index != -1) {
 			users.remove(index);

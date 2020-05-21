@@ -1,5 +1,7 @@
 package com.rpgzonewebrest.models.user;
 
+import java.util.Date;
+
 import javax.swing.JOptionPane;
 
 import com.rpgzonewebrest.models.room.Room;;
@@ -11,6 +13,14 @@ public class Normal extends User{
 	private static final long serialVersionUID = 1L;
 	public Normal() {
 		//talvez tirar
+	}
+	public Normal(String nickName, String password, String email, String bio, Date lastLogin) {
+		this.setPro(false);
+		this.setPassword(password);
+		this.setEmail(email);
+		this.setNickname(nickName);
+		this.setBio(bio);
+		this.setLastLogin(lastLogin);
 	}
 	@Override
 	public void leaveRoom(long roomID) {

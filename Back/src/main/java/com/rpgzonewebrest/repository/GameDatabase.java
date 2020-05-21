@@ -2,6 +2,8 @@ package com.rpgzonewebrest.repository;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.rpgzonewebrest.models.game.Game;
+
 public class GameDatabase {
 
 	private List<Game> freeGames = new ArrayList<Game>();
@@ -105,10 +107,10 @@ public class GameDatabase {
 				));
 	}
 	
-	public static List<Game> getFreeGames(){
+	public List<Game> getFreeGames(){
 		return freeGames;
 	}
-	public static List<Game> getPROgames() {
+	public List<Game> getPROgames() {
 		return PROGames;
 	}
 }
