@@ -22,6 +22,12 @@ $(function () {
 
 
 
+const logOut = () => {
+	let session = JSON.parse( localStorage.getItem("session") );
+	session.token = "";
+	localStorage.setItem('session', JSON.stringify(session));
+	window.location.href = './home.html';
+}
   
 function injectMenu(){
 
@@ -41,10 +47,11 @@ function injectMenu(){
 			<li><i class="fas fa-users"></i><a href="../html/players-search.html" > Search Players</a></li>
 			<li><i class="fas fa-search"></i><a href="../html/room-search.html" > Search Rooms</a></li>
 			<li><i class="fas fa-bolt"></i><a href="../html/be-a-pro.html" > Be a PRO!</a></li>
-			<li><i class="fas fa-sign-out-alt"></i><a > Log out</a></li>
+			<li><i class="fas fa-sign-out-alt"></i><a class="logout" href="#"> Log out</a></li>
 		</ul>
 	</div>
 
 	`;
+	document.querySelector('.logout').addEventListener('click', logOut);
 }
 injectMenu();

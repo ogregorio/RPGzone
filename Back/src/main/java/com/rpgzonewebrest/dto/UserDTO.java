@@ -1,6 +1,8 @@
 package com.rpgzonewebrest.dto;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.rpgzonewebrest.models.user.User;
 
@@ -12,6 +14,7 @@ public class UserDTO {//dto é um padrão de projeto para transferência de dado
 	private String lastLogin;
 	private String profilePicture;
 	private String bio;
+	private List<InviteDTO> invitesDTO = new ArrayList<InviteDTO>();
 	
 	public UserDTO(User user) {
 		this.setUserID(user.getID().toString());
@@ -21,7 +24,8 @@ public class UserDTO {//dto é um padrão de projeto para transferência de dado
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		this.setLastLogin(formatter.format(user.getLastLogin()));
 		this.setProfilePicture(user.getProfilePicture());
-		this.bio = user.getBio();
+		this.setBio( user.getBio() );
+		this.setInvitesDTO( user.getInvitesDTO() );
 	}
 
 	public String getUserID() {
@@ -78,5 +82,13 @@ public class UserDTO {//dto é um padrão de projeto para transferência de dado
 
 	public void setBio(String bio) {
 		this.bio = bio;
+	}
+
+	public List<InviteDTO> getInvitesDTO() {
+		return invitesDTO;
+	}
+
+	public void setInvitesDTO(List<InviteDTO> invitesDTO) {
+		this.invitesDTO = invitesDTO;
 	}
 }

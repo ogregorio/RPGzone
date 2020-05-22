@@ -15,7 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/modaal.css">
 </head>
 
-<body style="background: #3c4246">
+<body style="background: #3c4246" onload="loadSearchPageByPlayer()">
 	<div id="header">
 		<img id="logo" src="../assets/logo.png">
 		<i class="menu-open fas fa-bars"></i>
@@ -27,20 +27,13 @@
 
 	<div class="section" id="player-search">
 		<h5>Search for Players!</h5>
-		<form id="search-form" method="post">
+		<form id="search-form">
 			<input type="search" id="search" >
 			<button class="btn btn-primary btn-large" type="submit">Go!</button>
-		  </form>
+		</form>
 
 	<div class="section" id="search-result">
 		<!-- MODELO PARA MOSTRAR JOGADOR NO RESULTADO DA PESQUISA-->
-
-		<div class="player">
-			<span class="nick-label label">Nick: </span><span class="nick">Arthur</span><br>
-			<span class="bio-label label">Bio: </span><span class="bio">Jogador profissional de RPG</span><br>
-			<span class="id-label label">ID: </span><span class="bio">2</span><br>
-			<button class="inline btn btn-primary">Add</button>
-		</div>
 		
 		<!-- FIM DO MODELO PARA MOSTRAR JOGADOR NO RESULTADO DA PESQUISA-->
 	</div>
@@ -48,14 +41,7 @@
 	<div id="room-selector" style="display:none;">
 	<!-- MODELO DO BOTAO PARA INGRESSAR O JOGADOR NA SALA-->
 	
-	<div class="room">
-		<div class="room-id-label">
-			<span class="room-id-label">ID: </span><span class="room-id">2</span>
-		</div>
-		<div class="room-nick">
-			<span class="room-nick">Room de Teste</span>
-		</div>
-	</div>	
+		
 
 	<!-- FIM MODELO DO BOTAO PARA INGRESSAR O JOGADOR NA SALA-->
 	</div>
@@ -66,16 +52,12 @@
 </style>
 
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="../js/modaal.js"></script>
 <script src="../js/fetch.js"></script>
 <script src="../js/userMethods.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="../js/menu.js"></script>
 <script src="../js/globalJS.js"></script>
-<script src="../js/modaal.js"></script>
-<script>
-	$('.inline').modaal({
-		content_source: '#room-selector'
-	});
-</script>
+
 
 </html>
