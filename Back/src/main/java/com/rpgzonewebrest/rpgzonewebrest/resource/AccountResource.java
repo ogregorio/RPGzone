@@ -36,13 +36,6 @@ public class AccountResource {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 		}
 		Normal userLogged = normalDAO.get(idUserLogged);//recuperando os dados do usuário logado caso não esteja logado retorna null
-		/*List<Normal> list = normalDAO.getAll();
-		
-		System.out.println("\n Arquivo \n");
-		for(Iterator<Normal> iterator = list.iterator(); iterator.hasNext(); ) {
-			System.out.println(iterator.next());
-		}debug*/
-		
 		
 		if(userLogged != null) {
 			UserDTO userDTO = new UserDTO(userLogged);

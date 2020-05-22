@@ -47,7 +47,7 @@ Fetch = {
 				if(resp.status == 401){
 					window.alert("UNAUTHORIZED !!! Try login later");
 					window.location.href = "./home.html";
-				} else if(resp.status != 200){
+				} else if(resp.status !== 200 && resp.status !== 204 && resp.status !== 203 && resp.status !== 202 && resp.status !== 201){
 					window.alert("Don't was possible to make this action");
 				} else{
 					resp.json().then( data => resolve(data));
@@ -207,5 +207,34 @@ Fetch = {
 				window.alert("Internal Error");
 			});
 		});
+	},
+	deleteAuth : (url) => {
+		const token = JSON.parse(localStorage.getItem("session")).token;
+		return new Promise( (resolve, reject) => {
+			fetch(url, {
+				headers : {
+					'Content-Type' : 'application/json',
+					'Authorization' : 'Bearer ' + token
+				},
+				method : 'DELETE',
+				mode : 'cors',
+			})
+			.then( resp => {
+				if(resp.status == 404){
+					window.location.href = "./404.html";
+				}
+				if(resp.status == 401){
+					window.alert("UNAUTHORIZED!!! Try Login later!!!");
+				} else if(resp.status != 200){
+					window.alert("Unknown Error");
+				} else{
+					resp.json().then( data => resolve(data) );
+				}
+			})
+			.catch(_ => {
+				window.alert("Internal Error");
+			});
+		});
+		
 	}
 }
