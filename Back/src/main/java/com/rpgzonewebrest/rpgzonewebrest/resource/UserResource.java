@@ -198,5 +198,23 @@ public class UserResource {
 		return finded ? ResponseEntity.ok(normalDAO.get(idUserLogged).getInvitesDTO()) : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 	}
 	
+	@PutMapping("/rank/pro")
+	public ResponseEntity<Void> setRankPro(@RequestHeader String Authorization) {
+		Long idUserLogged;
+		try {
+			idUserLogged = AuthServices.requireDecryption(Authorization);
+		}catch(ExpiredTokenException | InvalidTokenException e) {
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+		}
+		Normal userLogged = normalDAO.get(idUserLogged);
+		if(userLogged == null) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		}
+		userLogged.setPro(true);
+		normalDAO.update(userLogged);
+		return ResponseEntity.noContent().build();
+	}
+	
 }
 

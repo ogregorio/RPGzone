@@ -128,7 +128,7 @@ public class RoomServices {
 				}
 			}
 			
-			if( !finded && !alreadyInvited(roomID, user)) {
+			if( !finded && !alreadyInvited(roomID, user) && userLogged.getID().equals( room.getAdmin().getID() ) ) {
 				roomsDTO.add(new RoomDTO( room ));
 			}
 		});
