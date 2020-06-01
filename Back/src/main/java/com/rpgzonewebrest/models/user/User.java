@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.rpgzonewebrest.dto.InviteDTO;
+import com.rpgzonewebrest.dto.NotificationDTO;
 import com.rpgzonewebrest.models.room.Room;
 //import utils.Reader;
 
@@ -24,6 +25,7 @@ public abstract class User implements Serializable {/**
 	private String profilePicture;
 	private String bio;
 	private List<InviteDTO> invitesDTO = new ArrayList<InviteDTO>();
+	private List<NotificationDTO> notificationsDTO = new ArrayList<NotificationDTO>();
 	private List<Long> rooms = new ArrayList<Long>();
 	private static Long userCounting = new Long(0);//this counter never be same, always to staying auto increment he never gonna be the same
 	
@@ -130,5 +132,13 @@ public abstract class User implements Serializable {/**
 
 	public void setInvitesDTO(List<InviteDTO> invitesDTO) {
 		this.invitesDTO = invitesDTO;
+	}
+
+	public List<NotificationDTO> getNotificationsDTO() {
+		return notificationsDTO;
+	}
+
+	public void setNotificationsDTO(List<NotificationDTO> notificationsDTO) {
+		this.notificationsDTO = notificationsDTO;
 	}
 }

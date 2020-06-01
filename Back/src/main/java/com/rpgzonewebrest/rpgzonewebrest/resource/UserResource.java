@@ -1,7 +1,6 @@
 package com.rpgzonewebrest.rpgzonewebrest.resource;
 
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -23,6 +22,7 @@ import com.rpgzonewebrest.authExceptions.ExpiredTokenException;
 import com.rpgzonewebrest.authExceptions.InvalidTokenException;
 import com.rpgzonewebrest.dao.DAO;
 import com.rpgzonewebrest.dto.InviteDTO;
+import com.rpgzonewebrest.dto.NotificationDTO;
 import com.rpgzonewebrest.dto.UserDTO;
 import com.rpgzonewebrest.models.user.Normal;
 import com.rpgzonewebrest.models.user.User;
@@ -184,19 +184,44 @@ public class UserResource {
 		if(userLogged == null) {//Opção inacessível se o usuário não estiver logado
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 		}
-		List<InviteDTO> invitesDTO = userLogged.getInvitesDTO();
-		boolean finded = false;
-		for(Iterator<InviteDTO> iterator = invitesDTO.iterator(); !finded && iterator.hasNext();) {
-			InviteDTO invite = iterator.next();
-			if( invite.getRoomID().equals(roomID) ) {
-				invitesDTO.remove(invitesDTO.indexOf(invite));
-				finded = true;
-			}
-		}
-		userLogged.setInvitesDTO(invitesDTO);
-		normalDAO.update(userLogged);
-		return finded ? ResponseEntity.ok(normalDAO.get(idUserLogged).getInvitesDTO()) : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		
+		return UserServices.deleteIviteRoom(userLogged, roomID);
 	}
+	@DeleteMapping("/invites/session/{sessionID}")
+	public ResponseEntity<List<InviteDTO>> destroyInviteSession(@RequestHeader String Authorization, @PathVariable Long sessionID){
+		Long idUserLogged;
+		try {
+			idUserLogged = AuthServices.requireDecryption(Authorization);
+		} catch(ExpiredTokenException | InvalidTokenException e) {
+			e.printStackTrace();//debug
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+		}
+		
+		Normal userLogged = normalDAO.get(idUserLogged);//recuperando os dados do usuário logado caso não esteja logado retorna null
+		if(userLogged == null) {//Opção inacessível se o usuário não estiver logado
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+		}
+		
+		return UserServices.deleteIviteSession(userLogged, sessionID);
+	}
+	@DeleteMapping("/notification/{notificationID}")
+	public ResponseEntity<List<NotificationDTO>> destroyNotification(@RequestHeader String Authorization, @PathVariable Long notificationID){
+		Long idUserLogged;
+		try {
+			idUserLogged = AuthServices.requireDecryption(Authorization);
+		} catch(ExpiredTokenException | InvalidTokenException e) {
+			e.printStackTrace();//debug
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+		}
+		
+		Normal userLogged = normalDAO.get(idUserLogged);//recuperando os dados do usuário logado caso não esteja logado retorna null
+		if(userLogged == null) {//Opção inacessível se o usuário não estiver logado
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+		}
+		
+		return UserServices.deleteNotification(userLogged, notificationID);
+	}
+	
 	
 	@PutMapping("/rank/pro")
 	public ResponseEntity<Void> setRankPro(@RequestHeader String Authorization) {

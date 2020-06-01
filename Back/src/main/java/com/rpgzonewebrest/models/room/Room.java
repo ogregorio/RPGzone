@@ -5,6 +5,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.rpgzonewebrest.dto.SessionDTO;
+
 //import java.sql.Date;
 
 import com.rpgzonewebrest.models.user.Admin;
@@ -21,6 +23,7 @@ public class Room implements Serializable {
 	private RoomConfig roomConfig;
 	private String roomDescription;
 	private List<Long> users = new ArrayList<Long>();
+	private List<SessionDTO> sessions = new ArrayList<SessionDTO>();
 	private static Long roomCounting = new Long(0);
 	
 	public static Long generateRoomID() {
@@ -88,6 +91,12 @@ public class Room implements Serializable {
 		return "admin : " + this.admin + "\n" +
 			   "room ID : " + this.roomID + "\n" +
 			   "roomNick : " + this.roomNick + "\n";
+	}
+	public List<SessionDTO> getSessions() {
+		return sessions;
+	}
+	public void setSessions(List<SessionDTO> sessions) {
+		this.sessions = sessions;
 	}
 
 }

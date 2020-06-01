@@ -15,6 +15,7 @@ public class UserDTO {//dto é um padrão de projeto para transferência de dado
 	private String profilePicture;
 	private String bio;
 	private List<InviteDTO> invitesDTO = new ArrayList<InviteDTO>();
+	private List<NotificationDTO> notificationsDTO = new ArrayList<NotificationDTO>();
 	
 	public UserDTO(User user) {
 		this.setUserID(user.getID().toString());
@@ -26,6 +27,7 @@ public class UserDTO {//dto é um padrão de projeto para transferência de dado
 		this.setProfilePicture(user.getProfilePicture());
 		this.setBio( user.getBio() );
 		this.setInvitesDTO( user.getInvitesDTO() );
+		this.setNotificationsDTO( user.getNotificationsDTO() );
 	}
 
 	public String getUserID() {
@@ -90,5 +92,13 @@ public class UserDTO {//dto é um padrão de projeto para transferência de dado
 
 	public void setInvitesDTO(List<InviteDTO> invitesDTO) {
 		this.invitesDTO = invitesDTO;
+	}
+
+	public List<NotificationDTO> getNotificationsDTO() {
+		return notificationsDTO;
+	}
+
+	public void setNotificationsDTO(List<NotificationDTO> notificationsDTO) {
+		this.notificationsDTO = notificationsDTO;
 	}
 }
