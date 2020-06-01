@@ -8,7 +8,10 @@ public class InviteDTO implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	
 	private Long roomID;
+	
+	public SessionDTO getSession() { return null; }
 	
 	public InviteDTO(Long roomID) {
 		setRoomID(roomID);

@@ -103,6 +103,22 @@ public class RoomResource {
 		}
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 	} 
+	@GetMapping("/{roomID}")
+	public ResponseEntity<RoomDTO> retrieveUserInRoom(@RequestHeader String Authorization,  @PathVariable Long roomID ){
+		Long idUserLogged;
+		try {
+			idUserLogged = AuthServices.requireDecryption(Authorization);
+		} catch(ExpiredTokenException | InvalidTokenException e) {
+			e.printStackTrace();//debug
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+		}
+		Normal  userLogged = normalDAO.get(idUserLogged);
+		
+		return  userLogged.getRooms().indexOf(roomID) != -1 ?
+				ResponseEntity.ok( new RoomDTO( roomDAO.get(roomID) ) ) :
+				ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+	} 
+	
 	
 	@GetMapping("/myrooms")
 	public ResponseEntity<List<RoomDTO>> myRooms(@RequestHeader String Authorization){
