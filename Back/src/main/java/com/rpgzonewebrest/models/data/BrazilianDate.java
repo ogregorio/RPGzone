@@ -11,7 +11,7 @@ public class BrazilianDate  extends Date{
 	public BrazilianDate(int ano, int mes, int dia) throws InvalidDateException {
     	super(ano, mes, dia);
     }
-	public BrazilianDate() {  }
+	public BrazilianDate() { }
    
     @Override
     public String formatoData(){

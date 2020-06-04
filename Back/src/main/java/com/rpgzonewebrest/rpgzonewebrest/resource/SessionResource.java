@@ -1,7 +1,10 @@
 package com.rpgzonewebrest.rpgzonewebrest.resource;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -19,6 +22,7 @@ import com.rpgzonewebrest.models.room.Room;
 import com.rpgzonewebrest.repository.DataBaseFake;
 import com.rpgzonewebrest.service.AuthServices;
 import com.rpgzonewebrest.service.SessionServices;
+import com.rpgzonewebrest.util.Ordenavel;
 
 @RestController
 @RequestMapping(value="/session", produces="application/json")
@@ -35,6 +39,7 @@ public class SessionResource {
 			e.printStackTrace();
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 		}
+		session.getBrazilianDate().setDayOfWeek(session.getBrazilianDate().diaDaSemana());
 		return 	SessionServices.createNewSession(idUserLogged, roomID, session) ? 
 				ResponseEntity.ok(session) :
 				ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -50,10 +55,22 @@ public class SessionResource {
 		}
 		SessionDTO session = SessionServices.updateSession(idUserLogged, roomID, sessionID, brazilianDate);
 		if(session != null) {
+			
 			SessionServices.notifyAllUsers("Session date changed, stay tuned for news", roomDAO.get(roomID), session);
 			return ResponseEntity.ok(session);
 		}
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+	}
+	
+	@GetMapping("/sort/{roomID}")
+	public ResponseEntity<List<Ordenavel>> sortSessions(@RequestHeader String Authorization, @PathVariable Long roomID){
+		try {
+			AuthServices.requireDecryption(Authorization);
+		}catch(ExpiredTokenException | InvalidTokenException e) {
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+		}
+		return SessionServices.sortSessions(roomID);
 	}
 	
 }
