@@ -4,12 +4,18 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
 import com.rpgzonewebrest.dao.DAO;
 import com.rpgzonewebrest.dto.InviteDTO;
+import com.rpgzonewebrest.dto.RoomConfigDTO;
+import com.rpgzonewebrest.dto.RoomConfigProDTO;
 import com.rpgzonewebrest.dto.RoomDTO;
 import com.rpgzonewebrest.models.room.Room;
 import com.rpgzonewebrest.models.user.Normal;
 import com.rpgzonewebrest.repository.DataBaseFake;
+import com.rpgzonewebrest.rpgzonewebrest.config.RoomConfig;
 
 public class RoomServices {
 	
@@ -134,5 +140,22 @@ public class RoomServices {
 		});
 		
 		return roomsDTO;
+	}
+	public static ResponseEntity<RoomDTO> updateRoomConfig(Long roomID, RoomConfig roomConfig) {
+		Room room = roomDAO.get(roomID);
+		if(room == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		room.setRoomConfig(roomConfig);
+		roomDAO.update(room);
+		return ResponseEntity.ok(new RoomDTO(room));
+	}
+	public static ResponseEntity<RoomConfigDTO> getRoomConfig(Long userLoggedID){
+		Normal userLogged = normalDAO.get(userLoggedID);
+		if(userLogged == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		return 	ResponseEntity.ok( 	
+					userLogged.getPro() ?
+					new RoomConfigProDTO() :
+					new RoomConfigDTO() 
+		);
+		
 	}
 }
