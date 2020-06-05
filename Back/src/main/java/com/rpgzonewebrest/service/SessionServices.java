@@ -1,7 +1,11 @@
 package com.rpgzonewebrest.service;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import com.rpgzonewebrest.dao.DAO;
 import com.rpgzonewebrest.dto.InviteDTO;
@@ -13,11 +17,21 @@ import com.rpgzonewebrest.models.room.Room;
 import com.rpgzonewebrest.models.user.Admin;
 import com.rpgzonewebrest.models.user.Normal;
 import com.rpgzonewebrest.repository.DataBaseFake;
+import com.rpgzonewebrest.util.Ordenador;
+import com.rpgzonewebrest.util.Ordenavel;
 
 public class SessionServices {
 	
 	private static DAO<Room, Long> roomDAO = DataBaseFake.getRoomData();
 	private static DAO<Normal, Long> normalDAO = DataBaseFake.getUserData();
+	
+	public static ResponseEntity<List<Ordenavel>> sortSessions(Long roomID) {
+		Room room = roomDAO.get(roomID);
+		if(room == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		List<Ordenavel> sessions = new ArrayList<Ordenavel>();
+		sessions.addAll(room.getSessions());
+		return ResponseEntity.ok( Ordenador.crescente( sessions ) );
+	}
 	
 	public static boolean createNewSession(Long idUserLogged, Long roomID, SessionDTO session) {
 		Normal userLogged = normalDAO.get(idUserLogged);
@@ -59,6 +73,7 @@ public class SessionServices {
 		}
 		if(finded) {
 			session.setBrazilianDate(brazilianDate);
+			session.getBrazilianDate().setDayOfWeek(session.getBrazilianDate().diaDaSemana());
 			sessionsDTO.set( sessionsDTO.indexOf(session), session);
 			room.setSessions(sessionsDTO);
 			roomDAO.update(room);

@@ -3,9 +3,8 @@ package com.rpgzonewebrest.models.data;
 import java.io.Serializable;
 
 import com.rpgzonewebrest.authExceptions.InvalidDateException;
-import com.rpgzonewebrest.util.Ordenavel;
 
-public abstract class Date implements Ordenavel, Serializable{
+public abstract class Date implements Serializable{
 	/**
 	 * 
 	 */
@@ -18,14 +17,6 @@ public abstract class Date implements Ordenavel, Serializable{
 	private int [] calendario = {};
 	private static final int [] CALENDARIO_GREGORIANO_NORMAL = {31,28,31,30,31,30,31,31,30,31,30,31};
 	private static final int []  CALENDARIO_GREGORIANO_BISEXTO = {31,29,31,30,31,30,31,31,30,31,30,31};
-	
-	@Override
-	public boolean menorQue(Ordenavel o){
-      Date dataEspec = (Date) o;
-      int quantDias1 = ( (this.ano - 1) * 366) + ( (this.mes - 1) * 31) + (this.dia);
-      int quantDias2 = ( (dataEspec.ano - 1) * 366) + ( (dataEspec.mes - 1) * 31) + (dataEspec.dia);//eu considerei que todos os meses e anos tem a mesma quantidade de dias pois isto mantém a proporção e a soma dá certo;
-      return (quantDias1 < quantDias2) ? true : false;
-	}
    
 	public void setAno(int ano) throws InvalidDateException {
 		if(ano < 1800 || ano > 2025 ){//depois colocar mais q 2020
@@ -128,9 +119,10 @@ public abstract class Date implements Ordenavel, Serializable{
     	this.setAno(ano);
     	this.setMes(mes);
 		this.setDia(dia);
+		System.out.println("date ano mes e dia " + this.dia + " / " + this.mes + " / " + this.ano );
 		this.setDayOfWeek( this.diaDaSemana() );
     }
-    public Date() { this.setDayOfWeek( this.diaDaSemana() ); }
+    public Date() {  }
     
     public abstract String formatoData();
     

@@ -3,8 +3,10 @@ package com.rpgzonewebrest.dto;
 import java.io.Serializable;
 
 import com.rpgzonewebrest.models.data.BrazilianDate;
+import com.rpgzonewebrest.models.data.Date;
+import com.rpgzonewebrest.util.Ordenavel;
 
-public class SessionDTO implements Serializable{
+public class SessionDTO implements Ordenavel, Serializable{
 	
 	
 	/**
@@ -34,6 +36,14 @@ public class SessionDTO implements Serializable{
 	public static Long generateSessionID() {
 		sessionCounter = new Long(sessionCounter.longValue() + 1);
 		return sessionCounter;
+	}
+	
+	@Override
+	public boolean menorQue(Ordenavel o){
+      Date dataEspec = ( (SessionDTO) o ).getBrazilianDate();
+      int quantDias1 = ( (this.getBrazilianDate().getAno() - 1) * 366) + ( (this.getBrazilianDate().getMes() - 1) * 31) + (this.getBrazilianDate().getDia());
+      int quantDias2 = ( (dataEspec.getAno() - 1) * 366) + ( (dataEspec.getMes() - 1) * 31) + (dataEspec.getDia());//eu considerei que todos os meses e anos tem a mesma quantidade de dias pois isto mantém a proporção e a soma dá certo;
+      return (quantDias1 < quantDias2) ? true : false;
 	}
 
 	public BrazilianDate getBrazilianDate() {
