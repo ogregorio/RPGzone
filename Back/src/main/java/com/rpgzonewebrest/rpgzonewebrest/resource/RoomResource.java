@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,11 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.rpgzonewebrest.authExceptions.ExpiredTokenException;
 import com.rpgzonewebrest.authExceptions.InvalidTokenException;
 import com.rpgzonewebrest.dao.DAO;
+import com.rpgzonewebrest.dto.RoomConfigDTO;
 import com.rpgzonewebrest.dto.RoomDTO;
 import com.rpgzonewebrest.models.room.Room;
 import com.rpgzonewebrest.models.user.Admin;
 import com.rpgzonewebrest.models.user.Normal;
 import com.rpgzonewebrest.repository.DataBaseFake;
+import com.rpgzonewebrest.rpgzonewebrest.config.RoomConfig;
 import com.rpgzonewebrest.service.AuthServices;
 import com.rpgzonewebrest.service.RoomServices;
 
@@ -178,7 +181,28 @@ public class RoomResource {
 			return ResponseEntity.noContent().build();
 		}
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-		
-//		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+	}
+	
+	@PutMapping("/{roomID}")
+	public ResponseEntity<RoomDTO> updateRoomConfig(@RequestHeader String Authorization, @RequestBody RoomConfig roomConfig, @PathVariable Long roomID){
+		try {
+			AuthServices.requireDecryption(Authorization);
+		} catch(ExpiredTokenException | InvalidTokenException e) {
+			e.printStackTrace();//debug
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+		}
+		return RoomServices.updateRoomConfig(roomID, roomConfig);
+	}
+	
+	@GetMapping("/configs")
+	public ResponseEntity<RoomConfigDTO> getAllRoomConfig(@RequestHeader String Authorization){
+		Long userLoggedID;
+		try {
+			userLoggedID = AuthServices.requireDecryption(Authorization);
+		} catch(ExpiredTokenException | InvalidTokenException e) {
+			e.printStackTrace();//debug
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+		}
+		return RoomServices.getRoomConfig(userLoggedID);
 	}
 }
