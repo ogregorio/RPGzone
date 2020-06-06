@@ -39,7 +39,7 @@ async function refreshPDF(){
     document.getElementById("embed-url").style.display = 'none';
 }
 
-/*MAPA*/
+// INCIO DO MAPA
 let map;
 function GetMap(lat,lon){
 		map = new Microsoft.Maps.Map('#myMap', {
@@ -49,36 +49,6 @@ function GetMap(lat,lon){
 		});
     
 }
-
-/*COLOCAR PUSHPIN */
-
-const addPushpinMap = async (country, zipcode, street, props) => {
-	const { latitude, longitude } = await getCoords(country, zipcode, street);
-	createPushpin(map.getCenter(), props, (pin) => {
-		map.entities.push(pin);
-		console.log('teste');
-		Microsoft.Maps.Events.addHandler(pin, 'click', pin => {
-			//make show this session on left side
-		});
-	});
-} 
-
-function createPushpin(location, props, callback) {
-
-    const pin = new Microsoft.Maps.Pushpin(location, {
-        icon: './assets/favicon.png',
-		title: props.title,
-        subTitle: props.subTitle,
-        anchor: new Microsoft.Maps.Point(12, 39)
-    });
-
-    if (callback) {
-        callback(pin);
-    }
-	
-}
-
-/* OBTER COORDENADAS */
 
 var street;
 var country;
@@ -102,11 +72,10 @@ const getCoords = async (country, zipcode, street) => {
 const refreshMap = async () => {
 	let sessions = JSON.parse(localStorage.getItem('session'));
 	let response = await Fetch.getAuth(`http://localhost:9090/session/sort/${sessions.roomID}`);
-	response.forEach( session => {
-		country  = `${session.country}`;
-		zipcode = `${session.zipCode}`;
-		street = `${session.street}`;
-	});
+	country  = `Brazil`; //onde deve vir o pais
+	zipcode = `31970132`; // onde deve vir o zipcode
+	street = `RuaManoelTavaresDeAlmeida`; // onde deve vir a rua
+	//obs: tem que estar formatado dessa forma
 	console.log(this.country, this.zipcode, this.street);
 	const { latitude, longitude } = await getCoords(country, zipcode, street);
 	console.log(latitude, longitude);
@@ -114,6 +83,7 @@ const refreshMap = async () => {
 	GetMap(latitude,longitude);
 }
 
+//FINAL DO MAPA
 const loadPlayers = async (response) => {
 	let playerList = document.querySelector('#players-list');
 	playerList.innerHTML = '';
