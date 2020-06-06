@@ -12,7 +12,8 @@
 
 * { -webkit-box-sizing:border-box; -moz-box-sizing:border-box; -ms-box-sizing:border-box; -o-box-sizing:border-box; box-sizing:border-box; }
 
-html { width: 100%; height:100%; overflow:hidden; }
+html { width: 100%; height:100%; }
+
 
 #header {background:#79366a;top: 0%;border-bottom: double 0.5em;} #header #logo{margin: auto;display: block;}
 
@@ -51,7 +52,7 @@ body {
     position: relative;
     margin: 70px auto auto auto;
     width: 25em;
-    height: 500px;
+    height: 900px;
     display: block;
 }
 .request h1 {padding: 5%; color: #fff; text-shadow: 0 0 10px rgba(0,0,0,0.3); letter-spacing:1px; text-align:center;font-family: 'Press Start 2P', cursive; }
@@ -80,3 +81,5 @@ input {
     transition: box-shadow .5s ease;
 }
 input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgba(255,255,255,0.2); }
+
+fieldset{border:none}

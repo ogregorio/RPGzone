@@ -16,12 +16,12 @@ public class GameDatabase {
 	
 	public void genFreeGamesDB() {
 	freeGames.add(new Game(
-			"Blades in the Dark", 
-			2017, 
-			"Evil Hat Productions", 
-			"Portuguese", 
-			"Blades_in_the_Dark.jpg",
-			"https://bladesinthedark.com/sites/default/files/blades_playerkit_v8_2.pdf"
+	                "EpicoRPG",
+	                2016,
+	                "Rafael Lopes Vivian",
+	                "Portuguese",
+                        "Epico.jpg",
+                        "https://epicorpg.com.br/downloads/Epico-RPG-Beta-5-final.pdf"
 			));
 	freeGames.add(new Game(
 			"Call of Cthulhu", 
@@ -29,7 +29,7 @@ public class GameDatabase {
 			"Chaosium", 
 			"Portuguese", 
 			"Warhammer.jpeg",
-			"https://drive.google.com/file/d/1M-F9b5mXBRHR1XMod_sk4rOFPfFOrIVi/view"
+			"https://www.chaosium.com/content/FreePDFs/CoC/CHA23131%20Call%20of%20Cthulhu%207th%20Edition%20Quick-Start%20Rules.pdf"
 			));
 	freeGames.add(new Game(
 			"Numenera", 
@@ -98,12 +98,12 @@ public class GameDatabase {
 				"https://www.chaosium.com/content/FreePDFs/RuneQuest/CHA4027%20-%20RuneQuest%20Quickstart.pdf"
 				));
 		PROGames.add(new Game(
-				"Tormenta", 
-				1999, 
-				"Jambô Editora", 
-				"Portuguese", 
-				"Tormenta.jpg",
-				"https://drive.google.com/file/d/13SVmcsJbUBsX0YZ0MlQgZcNsaDYXkJUc/view"
+			        "Blades in the Dark", 
+			        2017, 
+			        "Evil Hat Productions", 
+			        "Portuguese", 
+			        "Blades_in_the_Dark.jpg",
+			        "https://bladesinthedark.com/sites/default/files/blades_playerkit_v8_2.pdf"
 				));
 	}
 	
