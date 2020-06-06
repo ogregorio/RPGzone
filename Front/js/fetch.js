@@ -12,7 +12,7 @@ Fetch = {
 			.then(resp => {//quando há uma resposta então executa esse bloco
 				if(resp.status == 401){
 					window.alert("UNAUTHORIZED");
-					window.location.href = "./home.html";
+					window.location.href = "./index.html";
 				}
 				if(resp.status == 404){
 					window.location.href = "./404.html";
@@ -46,7 +46,7 @@ Fetch = {
 				}
 				if(resp.status == 401){
 					window.alert("UNAUTHORIZED !!! Try login later");
-					window.location.href = "./home.html";
+					window.location.href = "./index.html";
 				} else if(resp.status !== 200 && resp.status !== 204 && resp.status !== 203 && resp.status !== 202 && resp.status !== 201){
 					window.alert("Don't was possible to make this action");
 				} else{
@@ -100,7 +100,7 @@ Fetch = {
 				}
 				if(res.status == 401){
 					window.alert("UNAUTHORIZED!!! Try login later");
-					window.location.href = "./home.html";
+					window.location.href = "./index.html";
 				} else if(res.status !== 200 && res.status !== 204 && res.status !== 203 && res.status != 202 && res.status != 201){
 					reject("Don't was possible to make this action");
 				} else{
@@ -137,7 +137,7 @@ Fetch = {
 				}
 				if(resp.status == 401){
 					window.alert("UNAUTHORIZED");
-					window.location.href = "./home.html";
+					window.location.href = "./index.html";
 				} else if(resp.status !== 200 && resp.status !== 204 && resp.status !== 203 && resp.status != 202 && resp.status != 201){
 					reject("Don't was possible to make this action");
 				} else{
@@ -166,7 +166,7 @@ Fetch = {
 				}
 				if(resp.status == 401){
 					window.alert("UNAUTHORIZED");
-					window.location.href = "./home.html";
+					window.location.href = "./index.html";
 				} else if(resp.status !== 200 && resp.status !== 204 && resp.status !== 203 && resp.status != 202 && resp.status != 201){
 					reject("Don't was possible to make this action");
 				} else{
@@ -175,6 +175,34 @@ Fetch = {
 			})
 			.catch(_ => {
 				window.alert("Server unavailable.");
+			});
+		});
+	},
+	
+	put : (url) => {
+		return new Promise( (resolve, reject) => {
+			fetch(url, {
+				headers : {
+					'Content-Type' : 'application/json'
+				},
+				method: "PUT",
+				mode: "cors",
+			})
+			.then( res => {
+				if(res.status == 404){
+					window.location.href = "./404.html";
+				}
+				if(res.status == 401){
+					window.alert("UNAUTHORIZED!!! Try login later");
+					window.location.href = "./index.html";
+				} else if(res.status !== 200 && res.status !== 204 && res.status !== 203 && res.status != 202 && res.status != 201){
+					reject("Don't was possible to make this action");
+				} else{
+					resolve(res);
+				}
+			})
+			.catch(_ => {
+				alert("Server unavailable.");
 			});
 		});
 	},
