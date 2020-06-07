@@ -19,7 +19,7 @@ document.querySelectorAll('.fab ul li button').forEach((item) => {
 /*Embed features */
 /* URL */
 function refreshURL(source){
-    var iframe = document.getElementById('embed-url');
+    let iframe = document.getElementById('embed-url');
     iframe.src = source;
     document.getElementById('embed-url').style.display = 'block';
     document.getElementById('object-pdf').style.display = 'none';
@@ -27,10 +27,10 @@ function refreshURL(source){
 }
 /* PDF */
 async function refreshPDF(){
-    var object = document.getElementById('object-pdf');
-	var embed = document.getElementById('embed-pdf');
-	var session = JSON.parse(localStorage.getItem('session'));
-	var response = await Fetch.getAuth(`http://localhost:9090/rooms/${session.roomID}`);
+    let object = document.getElementById('object-pdf');
+	let embed = document.getElementById('embed-pdf');
+	let session = JSON.parse(localStorage.getItem('session'));
+	let response = await Fetch.getAuth(`http://localhost:9090/rooms/${session.roomID}`);
 	source = response.roomConfig.game.pdfGuide;
     object.data = source;
     embed.src = source;
@@ -39,7 +39,7 @@ async function refreshPDF(){
     document.getElementById("embed-url").style.display = 'none';
 }
 
-// INCIO DO MAPA
+/*MAPA*/
 let map;
 function GetMap(lat,lon){
 		map = new Microsoft.Maps.Map('#myMap', {
@@ -50,9 +50,37 @@ function GetMap(lat,lon){
     
 }
 
-var street;
-var country;
-var zipcode;
+/*COLOCAR PUSHPIN */
+
+const addPushpinMap = async (country, zipcode, street, props) => {
+	const { latitude, longitude } = await getCoords(country, zipcode, street);
+	createPushpin(map.getCenter(), props, (pin) => {
+		map.entities.push(pin);
+		console.log('teste');
+		Microsoft.Maps.Events.addHandler(pin, 'click', pin => {
+			//make show this session on left side
+		});
+	});
+} 
+
+function createPushpin(location, props, callback) {
+
+    const pin = new Microsoft.Maps.Pushpin(location, {
+        icon: './assets/favicon.png',
+		title: props.title,
+        subTitle: props.subTitle,
+        anchor: new Microsoft.Maps.Point(12, 39)
+    });
+
+    if (callback) {
+        callback(pin);
+    }
+	
+}
+
+/* OBTER COORDENADAS */
+
+
 
 const getCoords = async (country, zipcode, street) => {
 	//street = street.replace(" ","");
@@ -71,19 +99,27 @@ const getCoords = async (country, zipcode, street) => {
 
 const refreshMap = async () => {
 	let sessions = JSON.parse(localStorage.getItem('session'));
+	let street;
+	let country;
+	let zipcode;
+	console.log(sessions.roomID);
 	let response = await Fetch.getAuth(`http://localhost:9090/session/sort/${sessions.roomID}`);
-	country  = `Brazil`; //onde deve vir o pais
-	zipcode = `31970132`; // onde deve vir o zipcode
-	street = `RuaManoelTavaresDeAlmeida`; // onde deve vir a rua
-	//obs: tem que estar formatado dessa forma
-	console.log(this.country, this.zipcode, this.street);
+	if(response.length === 0){
+		street = "Rua 18 de Abril";
+		country = "Brazil";
+		zipcode = "08226021";
+	}
+	else {
+		/*sessão mais recente*/
+		street = response[0].street;
+		country = response[0].country;
+		zipcode = response[0].zipCode;
+	}
 	const { latitude, longitude } = await getCoords(country, zipcode, street);
-	console.log(latitude, longitude);
 	document.getElementById('reload').style.display = 'none';
 	GetMap(latitude,longitude);
 }
 
-//FINAL DO MAPA
 const loadPlayers = async (response) => {
 	let playerList = document.querySelector('#players-list');
 	playerList.innerHTML = '';

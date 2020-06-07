@@ -1,7 +1,7 @@
 
 const verifyEmailWasAccept = () => {
 	
-	let session = JSON.parse(localStorage.getItem("session"));
+	/*let session = JSON.parse(localStorage.getItem("session"));
 	if(!session.userDataSignUp){
 		console.log('userDataSignUp IS null');
 	}
@@ -20,7 +20,7 @@ const verifyEmailWasAccept = () => {
 			signUpApproved();
 		}
 	}
-	console.log(session.userDataSignUp);
+	console.log(session.userDataSignUp);*/
 }
 
 const uuid = () => {
@@ -43,7 +43,7 @@ const signUp = async () => {
 		}
 		session.userDataSignUp = data;
 		localStorage.setItem("session", JSON.stringify(session));
-		const body = {
+		/*const body = {
 			"token" : `${data.token}`,
 			"email" : `${data.email}` ,
 			"nickName" : `${data.nickName}`
@@ -55,7 +55,8 @@ const signUp = async () => {
 		}
 		else{
 			window.alert('Error sending the e-mail');
-		}
+		}*/
+		signUpApproved();
 	}
 }
 
@@ -121,7 +122,8 @@ const createRoom = () => {
 	.then( resp => {
 		let session = JSON.parse( localStorage.getItem('session') );
 		session.roomID = resp.roomID;
-		localStorage.setItem('session', JSON.stringify(session));
+		console.log(session.roomID);
+		localStorage.setItem("session", JSON.stringify(session));
 		popUp.classList.remove("hidden-flex-container");
 		popUp.classList.add("show-flex-container");
 		popUp.addEventListener('click', (e) => {
