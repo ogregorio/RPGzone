@@ -454,7 +454,7 @@ const searchPlayer = async () => {
 		let content = '';
 		if(response){
 			response.forEach( user => {
-				if(clearString(user.nickName).toUpperCase() === textInputValue){
+				if(clearString(user.nickName).toUpperCase() === textInputValue || clearString(user.email).toUpperCase() === textInputValue ){
 					content += `
 								<div class="player">
 									<span class="nick-label label">Nick: </span><span class="nick">${user.nickName}</span><br>

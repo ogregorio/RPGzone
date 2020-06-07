@@ -13,9 +13,9 @@ public class RoomConfigProDTO extends RoomConfigDTO {
 			super.getGames().add(game);
 		}
 		
-		super.getGameRules().add("- teste de regras de jogo Pro 1  - teste de regras de jogo Pro 1  - teste de regras de jogo Pro 1  - teste de regras de jogo Pro 1  ");
-		super.getPlots().add("teste de enredo Pro 1  teste de enredo Pro 1  teste de enredo Pro 1  teste de enredo Pro 1  teste de enredo Pro 1  teste de enredo Pro 1  teste de enredo Pro 1  teste de enredo Pro 1  ");	
-		super.getGameRules().add("- teste de regras de jogo Pro 2 - teste de regras de jogo Pro 2 - teste de regras de jogo Pro 2 - teste de regras de jogo Pro 2 - teste de regras de jogo Pro 2   !!! ");
-		super.getPlots().add("teste de enredo Pro 2 teste de enredo Pro 2 teste de enredo Pro 2 teste de enredo Pro 2 teste de enredo Pro 2 teste de enredo Pro 2 ");
+		super.getGameRules().add("Pro Default");
+		super.getPlots().add("Pro Default");	
+		super.getGameRules().add("Pro Custom");
+		super.getPlots().add("Pro Custom");
 	}
 }

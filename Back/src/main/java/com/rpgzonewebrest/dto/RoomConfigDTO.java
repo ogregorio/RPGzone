@@ -13,10 +13,10 @@ public class RoomConfigDTO {
 	
 	public RoomConfigDTO() {	
 		this.setGames( ( new GameDatabase() ).getFreeGames());
-		gameRules.add("- Teste regras  !!!- Teste regras  !!!- Teste regras  !!!- Teste regras  !!! ");
-		plots.add("Enredos normais teste 1 Enredos normais teste 1 Enredos normais teste 1 Enredos normais teste 1 Enredos normais teste 1 ");
-		gameRules.add("- Teste regras2 !!!- Teste regras2  !!!- Teste regras2  !!!");
-		plots.add("Enredos normais teste 2 Enredos normais teste 2 Enredos normais teste 2 Enredos normais teste 2 Enredos normais teste 2 ");
+		gameRules.add("Default");
+		plots.add("Default");
+		gameRules.add("Custom");
+		plots.add("Custom");
 	}
 	
 	public List<Game> getGames() {
